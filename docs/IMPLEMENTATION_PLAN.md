@@ -59,18 +59,18 @@ Placeholders start with `<NEEDS` (e.g. `"<NEEDS SOURCE>"`). Agents NEVER write r
 ## M0: Walking skeleton (Mon 9 Nov) -> Deploy D1
 Goal: the simplest possible app, live on the Space, with the whole pipeline proven.
 
-- [ ] **T0.1 (MUST) Project scaffold.** Files: `.gitignore` (use `gitignore-additions.txt`), `requirements.txt` (`fastapi`, `uvicorn[standard]`, `onnxruntime`, `pillow`, `numpy`, `python-multipart`), `requirements-dev.txt` (exists), `app/__init__.py`, `tests/__init__.py`, empty `tests/sample_images/`.
+- [x] **T0.1 (MUST) Project scaffold.** Files: `.gitignore` (use `gitignore-additions.txt`), `requirements.txt` (`fastapi`, `uvicorn[standard]`, `onnxruntime`, `pillow`, `numpy`, `python-multipart`), `requirements-dev.txt` (exists), `app/__init__.py`, `tests/__init__.py`, empty `tests/sample_images/`.
   Accept: `python -m venv .venv`, `pip install -r requirements.txt -r requirements-dev.txt` works on Python 3.11 or 3.12. Commit: `chore: project scaffold`.
-- [ ] **T0.2 (MUST) Placeholder labels.** `app/data/labels.json` with 3 labels: `["Tomato___Early_blight","Tomato___Late_blight","Tomato___healthy"]`. Commit: `chore: placeholder labels`.
-- [ ] **T0.3 (MUST) Skeleton API.** `app/main.py`: `/health` (`{"status":"ok","model":"dummy"}`), `/version` (via `app/version.py`; sha `"dev"` locally), `/predict` returning a FIXED response in the final shape (status `confident`, 3 top items, a short fake advice with `"reviewed": {"en": false, ...}`), and static mount of `static/` at `/`.
+- [x] **T0.2 (MUST) Placeholder labels.** `app/data/labels.json` with 3 labels: `["Tomato___Early_blight","Tomato___Late_blight","Tomato___healthy"]`. Commit: `chore: placeholder labels`.
+- [x] **T0.3 (MUST) Skeleton API.** `app/main.py`: `/health` (`{"status":"ok","model":"dummy"}`), `/version` (via `app/version.py`; sha `"dev"` locally), `/predict` returning a FIXED response in the final shape (status `confident`, 3 top items, a short fake advice with `"reviewed": {"en": false, ...}`), and static mount of `static/` at `/`.
   Accept: `uvicorn app.main:app --port 8000` then curl `/health`, `/version`, `/predict` all return valid JSON. Commit: `feat: skeleton api`.
-- [ ] **T0.4 (MUST) Skeleton page.** `static/index.html` (+ minimal `app.js`): a file input, a button, and a `<pre>` showing the JSON from `/predict`.
+- [x] **T0.4 (MUST) Skeleton page.** `static/index.html` (+ minimal `app.js`): a file input, a button, and a `<pre>` showing the JSON from `/predict`.
   Accept: upload any image in the browser and see JSON. Commit: `feat: skeleton page`.
-- [ ] **T0.5 (MUST) Tests.** `tests/test_api.py` with `TestClient`: `/health` ok, `/version` has `sha`, `/predict` 200 with `top` and `status`.
+- [x] **T0.5 (MUST) Tests.** `tests/test_api.py` with `TestClient`: `/health` ok, `/version` has `sha`, `/predict` 200 with `top` and `status`.
   Accept: `pytest -q` green. Commit: `test: skeleton api tests`.
-- [ ] **T0.6 (MUST) Container and README.** `Dockerfile` exactly: `python:3.11-slim`, `WORKDIR /app`, copy `requirements.txt`, pip install `--no-cache-dir`, copy all, `useradd -m -u 1000 user`, `USER user`, `EXPOSE 7860`, `CMD uvicorn app.main:app --host 0.0.0.0 --port 7860`. `.dockerignore` (`.venv`, `.git`, `tests`, `datasets`, `__pycache__`). `README.md` starting with front matter `title: LeafGuard`, `sdk: docker`, `app_port: 7860`, then a short description, run commands, privacy line ("photos are not stored"), and a "Status: work in progress" note.
+- [x] **T0.6 (MUST) Container and README.** `Dockerfile` exactly: `python:3.11-slim`, `WORKDIR /app`, copy `requirements.txt`, pip install `--no-cache-dir`, copy all, `useradd -m -u 1000 user`, `USER user`, `EXPOSE 7860`, `CMD uvicorn app.main:app --host 0.0.0.0 --port 7860`. `.dockerignore` (`.venv`, `.git`, `tests`, `datasets`, `__pycache__`). `README.md` starting with front matter `title: LeafGuard`, `sdk: docker`, `app_port: 7860`, then a short description, run commands, privacy line ("photos are not stored"), and a "Status: work in progress" note.
   Accept: if Docker exists, `docker build` and `docker run -p 8000:7860` serve the page. Commit: `chore: dockerfile and readme`.
-- [ ] **T0.7 (SHOULD) CI.** Keep `.github/workflows/ci.yml` (tests only). Accept: green run on GitHub. Commit: `ci: run tests`.
+- [x] **T0.7 (SHOULD) CI.** Keep `.github/workflows/ci.yml` (tests only). Accept: green run on GitHub. Commit: `ci: run tests`.
 - **HUMAN H0:** create neutral GitHub and Hugging Face accounts; create the repo and the Space; add the `hf` remote; create `.banned_terms.txt`; set git identity; follow "One-time setup" in `docs/MANUAL_DEPLOY.md`.
 - Agent: run `/pre-deploy` for **D1**. **HUMAN: deploy D1** (`--allow-dummy`), phone test, log it, tag `v0.1-skeleton`.
 
