@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.banned_terms.txt
+app/version.json
+datasets/
+tests/field_photos/
+leafguard-kit/
+*.pdf
+* (1).*

@@ -1,0 +1,15 @@
+name: Tests
+# Tests only. Deployment is MANUAL (see docs/MANUAL_DEPLOY.md). A green badge here proves tests pass on every push.
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with: { lfs: true }
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11", cache: pip }
+      - run: pip install -r requirements.txt -r requirements-dev.txt
+      - run: pytest -q
