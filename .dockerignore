@@ -1,0 +1,9 @@
+.venv/
+.git/
+tests/
+datasets/
+__pycache__/
+*.pyc
+leafguard-kit/
+*.pdf
+.banned_terms.txt
