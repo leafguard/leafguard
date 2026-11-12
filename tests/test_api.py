@@ -62,3 +62,4 @@ def test_predict_rejects_empty():
         data={"lang": "en"},
     )
     assert response.status_code == 400
+

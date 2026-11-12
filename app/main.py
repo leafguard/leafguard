@@ -67,3 +67,4 @@ async def predict(file: UploadFile = File(...), lang: str = Form("en")) -> dict:
 STATIC_DIR = Path(__file__).resolve().parent.parent / "static"
 STATIC_DIR.mkdir(parents=True, exist_ok=True)
 app.mount("/", StaticFiles(directory=str(STATIC_DIR), html=True), name="static")
+

@@ -40,3 +40,4 @@ scanBtn.addEventListener("click", async () => {
     scanBtn.disabled = false;
   }
 });
+
