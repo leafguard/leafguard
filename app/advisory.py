@@ -50,6 +50,12 @@ def display_name(label: str, lang: str = "en") -> str:
     if "___" in label:
         crop, disease = label.split("___", 1)
         return f"{crop.replace('_', ' ')} - {disease.replace('_', ' ')}"
+
+    # Prefix crop for known solanaceous classes
+    tomato_classes = {"Early_Blight", "Late_Blight", "Bacterial_Spot", "Septoria_Leaf_Spot", "Yellow_Leaf_Curl_Virus", "Healthy"}
+    if label in tomato_classes:
+        return f"Tomato - {label.replace('_', ' ')}"
+
     return label.replace("_", " ")
 
 
