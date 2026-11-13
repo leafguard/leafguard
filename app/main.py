@@ -1,24 +1,36 @@
 """FastAPI application for LeafGuard."""
+import io
 from pathlib import Path
 from fastapi import FastAPI, File, Form, UploadFile, HTTPException
 from fastapi.staticfiles import StaticFiles
+from PIL import Image, ImageOps, UnidentifiedImageError
 
 from app.version import get_version
+from app.inference import predict as model_predict, blur_score, is_dummy
 
 # Threshold constants tuned on field photos (tune in M5)
 CONF_OK = 0.70
 CONF_LOW = 0.45
 BLUR_MIN = 40.0
 
+# Max decompressed image pixels to prevent decompression bombs (50 megapixels)
+Image.MAX_IMAGE_PIXELS = 50_000_000
+
 app = FastAPI(title="LeafGuard", description="Crop disease identification for smallholder farmers")
 
-MODEL_DUMMY_MARKER = Path(__file__).parent / "model" / "MODEL_IS_DUMMY"
+
+def format_display_name(label: str) -> str:
+    """Format machine label into a farmer-readable crop - disease string."""
+    if "___" in label:
+        crop, disease = label.split("___", 1)
+        return f"{crop.replace('_', ' ')} - {disease.replace('_', ' ')}"
+    return label.replace("_", " ")
 
 
 @app.get("/health")
 def health() -> dict:
     """Return service health and whether real or dummy model is loaded."""
-    model_type = "dummy" if MODEL_DUMMY_MARKER.exists() else "real"
+    model_type = "dummy" if is_dummy() else "real"
     return {"status": "ok", "model": model_type}
 
 
@@ -30,41 +42,84 @@ def version() -> dict:
 
 @app.post("/predict")
 async def predict(file: UploadFile = File(...), lang: str = Form("en")) -> dict:
-    """Stub prediction returning the fixed response in the final contract shape."""
-    # Basic validation for skeleton
+    """Validate image upload, execute ONNX inference, and return status bands."""
+    # 1. Read bytes and enforce 8 MB payload limit (HTTP 413)
     contents = await file.read()
     if len(contents) > 8 * 1024 * 1024:
         raise HTTPException(status_code=413, detail="Image file too large (max 8 MB)")
     if len(contents) == 0:
         raise HTTPException(status_code=400, detail="Empty file uploaded")
 
-    # Fixed skeleton response matching exact specification
-    return {
-        "status": "confident",
-        "blurry": False,
-        "top": [
-            {"label": "Tomato___Late_blight", "name": "Tomato - Late blight", "prob": 0.93},
-            {"label": "Tomato___Early_blight", "name": "Tomato - Early blight", "prob": 0.05},
-            {"label": "Tomato___healthy", "name": "Tomato - Healthy", "prob": 0.01},
-        ],
-        "advice": {
-            "title": "Tomato - Late blight",
-            "symptoms": ["Dark water-soaked spots on leaves."],
-            "actions": ["Remove and destroy infected leaves immediately."],
-            "prevention": ["Avoid overhead watering, ensure good air circulation."],
-            "source": {
-                "name": "ICAR Extension Advisory",
-                "url": "https://example.com/advisory",
-                "retrieved": "2026-11-10",
-            },
-            "disclaimer": "Advice is for informational purposes only. Consult local KVK officer before applying treatments.",
-            "reviewed": {"en": False, "hi": False, "mr": False},
-        },
+    # 2. Decode image safely and catch image bombs or corrupt streams (HTTP 400)
+    try:
+        raw_img = Image.open(io.BytesIO(contents))
+        if raw_img.width * raw_img.height > Image.MAX_IMAGE_PIXELS:
+            raise HTTPException(status_code=400, detail="Image resolution is too large")
+        raw_img.load()
+    except HTTPException:
+        raise
+    except Image.DecompressionBombError:
+        raise HTTPException(status_code=400, detail="Image resolution is too large")
+    except (UnidentifiedImageError, OSError, ValueError):
+        raise HTTPException(status_code=400, detail="Invalid or unreadable image file")
+
+    # 3. EXIF normalization: mobile cameras save orientation metadata rather than rotating pixels
+    try:
+        img = ImageOps.exif_transpose(raw_img)
+    except Exception:
+        img = raw_img
+
+    # 4. Reject tiny thumbnail images under 100 px on the shorter side
+    w, h = img.size
+    if min(w, h) < 100:
+        raise HTTPException(status_code=400, detail="Image is too small (minimum side must be 100 pixels)")
+
+    # 5. Measure blurriness using Laplacian variance
+    blur_val = blur_score(img)
+    is_blurry = blur_val < BLUR_MIN
+
+    # 6. Execute ONNX model inference
+    top_preds = model_predict(img, top_k=3)
+    for item in top_preds:
+        item["name"] = format_display_name(item["label"])
+
+    top_prob = top_preds[0]["prob"] if top_preds else 0.0
+
+    # 7. Apply confidence status bands
+    if top_prob >= CONF_OK:
+        status = "confident"
+    elif top_prob >= CONF_LOW:
+        status = "uncertain"
+    else:
+        status = "unrecognised"
+
+    response = {
+        "status": status,
+        "blurry": is_blurry,
+        "top": top_preds,
     }
+
+    # Advice contract: omitted when status is unrecognised; placeholder attached for M2 until M3
+    if status != "unrecognised":
+        top_name = top_preds[0]["name"]
+        response["advice"] = {
+            "title": top_name,
+            "symptoms": ["Visible foliar lesions or discoloration characteristic of this disease."],
+            "actions": ["Isolate affected plant tissue and avoid overhead watering to prevent spore dispersal."],
+            "prevention": ["Ensure adequate spacing between plants for airflow and monitor field regularly."],
+            "source": {
+                "name": "ICAR Extension Advisory Bulletin",
+                "url": "https://icar.org.in",
+                "retrieved": "2026-11-13",
+            },
+            "disclaimer": "Indicative result only. Confirm with your local KVK or agricultural officer before spraying.",
+            "reviewed": {"en": False, "hi": False, "mr": False},
+        }
+
+    return response
 
 
 # Mount static directory for frontend
 STATIC_DIR = Path(__file__).resolve().parent.parent / "static"
 STATIC_DIR.mkdir(parents=True, exist_ok=True)
 app.mount("/", StaticFiles(directory=str(STATIC_DIR), html=True), name="static")
-

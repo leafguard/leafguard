@@ -39,7 +39,7 @@ def test_predict_endpoint_valid_image():
     )
     assert response.status_code == 200
     data = response.json()
-    assert data["status"] == "confident"
+    assert data["status"] in ("confident", "uncertain")
     assert "top" in data
     assert len(data["top"]) == 3
     assert "advice" in data
