@@ -62,16 +62,13 @@ def test_predict_includes_advice_in_requested_lang():
             assert data["advice"]["disclaimer"]
 
 
-def test_predict_omits_advice_when_unrecognised():
-    # Random noise image produces low, scattered probabilities (< 0.45)
-    noise_arr = np.random.randint(0, 255, (300, 300, 3), dtype=np.uint8)
-    img = Image.fromarray(noise_arr)
-    buf = io.BytesIO()
-    img.save(buf, format="JPEG")
-
+def test_predict_omits_advice_when_unrecognised(monkeypatch):
+    # Deterministic test: when top probability is below CONF_LOW (0.20), status is unrecognised and advice omitted
+    monkeypatch.setattr("app.main.model_predict", lambda *args, **kwargs: [{"label": "Healthy", "prob": 0.12}])
+    img_bytes = make_test_jpeg()
     response = client.post(
         "/predict",
-        files={"file": ("noise.jpg", buf.getvalue(), "image/jpeg")},
+        files={"file": ("leaf.jpg", img_bytes, "image/jpeg")},
         data={"lang": "en"},
     )
     assert response.status_code == 200
