@@ -6,6 +6,7 @@ __pycache__/
 app/version.json
 datasets/
 tests/field_photos/
+field_results.csv
 leafguard-kit/
 *.pdf
 * (1).*
