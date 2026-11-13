@@ -113,3 +113,4 @@ def get(label: str, lang: str = "en") -> Dict[str, Any]:
         "disclaimer": disclaimer_text,
         "reviewed": is_reviewed,
     }
+
