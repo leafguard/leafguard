@@ -100,3 +100,4 @@ The model is trained on a combination of open agricultural research datasets:
 - Edge-device on-device inference via WebAssembly (ONNX Runtime Web) or TFLite to operate in zero-connectivity farming zones.
 - Multi-crop segmentation mask prior to classification to isolate leaf boundaries from weeds and soil.
 - Integration of seasonal weather advisory feeds via regional agromet services.
+
