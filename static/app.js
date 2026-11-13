@@ -381,7 +381,19 @@
       voiceActionWrap.classList.remove("hidden");
 
       const adv = data.advice || {};
-      const formatList = (arr) => (Array.isArray(arr) ? `<ul>${arr.map(i => `<li>${i}</li>`).join("")}</ul>` : `<p>${arr || ""}</p>`);
+      const escapeHtml = (str) => {
+        const div = document.createElement("div");
+        div.textContent = str || "";
+        return div.innerHTML;
+      };
+      const formatList = (arr) => {
+        if (!arr || (Array.isArray(arr) && arr.length === 0)) {
+          return "<p>No specific guidance available.</p>";
+        }
+        return Array.isArray(arr)
+          ? `<ul>${arr.map(i => `<li>${escapeHtml(i)}</li>`).join("")}</ul>`
+          : `<p>${escapeHtml(arr)}</p>`;
+      };
 
       document.getElementById("symptomsContent").innerHTML = formatList(adv.symptoms);
       document.getElementById("actionsContent").innerHTML = formatList(adv.actions);
