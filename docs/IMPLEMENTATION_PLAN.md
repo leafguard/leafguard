@@ -77,7 +77,7 @@ Goal: the simplest possible app, live on the Space, with the whole pipeline prov
 ## M1: Model pipeline (parallel, ML lead; runs on Kaggle)
 Goal: `leaf.onnx` + `labels.json` + honest metrics. The agent writes the notebook; humans run it.
 
-- [ ] **T1.1 (MUST) Training notebook** `training/train_kaggle.ipynb`, sections in order:
+- [x] **T1.1 (MUST) Training notebook** `training/train_kaggle.ipynb`, sections in order:
   1. Seeds (`random`, `numpy`, `torch`) and printed versions of python, torch, torchvision, onnxruntime.
   2. Data: `DATA` path variable; `ImageFolder` train/val; PRINT every class name with its image count and warn on any class under 100 images. Save `labels.json`.
   3. Transforms exactly as in `.agents/rules/30-ml-training.md` (train: RandomResizedCrop(224, scale 0.5-1), flip, rotation 20, ColorJitter(0.3,0.3,0.3,0.05), ToTensor, Normalize, RandomErasing(0.2); val: Resize(256), CenterCrop(224), ToTensor, Normalize).
@@ -88,7 +88,7 @@ Goal: `leaf.onnx` + `labels.json` + honest metrics. The agent writes the noteboo
   8. Reference tensor: take `tests/sample_images/ref_leaf.jpg`, apply the VAL transform with torchvision, save `preproc_reference.npy` shape (1,3,224,224).
   9. Save `leaf.onnx`, `labels.json`, `preproc_reference.npy`, and a `metrics.json` with all numbers.
   Accept: notebook has no hard-coded absolute paths except the clearly marked `DATA`/`FIELD` variables. Commit: `feat: kaggle training notebook`.
-- [ ] **T1.2 (MUST) Tech note skeleton** `docs/TECH_NOTE.md` with the sections from the execution plan (problem and scope, data and licences, model, results table with `<NOT MEASURED>` cells for lab/field, serving, advisory, limitations, reproduce, future work). Commit: `docs: tech note skeleton`.
+- [x] **T1.2 (MUST) Tech note skeleton** `docs/TECH_NOTE.md` with the sections from the execution plan (problem and scope, data and licences, model, results table with `<NOT MEASURED>` cells for lab/field, serving, advisory, limitations, reproduce, future work). Commit: `docs: tech note skeleton`.
 - **HUMAN H1:** pick the crop subset after reading the printed class counts (check coverage; PlantVillage soybean is healthy-only); run the notebook on Kaggle; build the field set (PlantDoc subset + own photos, 30 to 100); download `leaf.onnx`, `labels.json`, `preproc_reference.npy`, `metrics.json`; copy them into `app/model/`, `app/data/`, `tests/fixtures/`; commit the model with Git LFS; fill the numbers in `docs/TECH_NOTE.md`; save one clean sample photo as `tests/sample_images/ref_leaf.jpg`. Tag `v0.5-model` after committing.
 
 ## M2: Real inference and API hardening (Tue 10 Nov) -> Deploy D2
