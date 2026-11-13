@@ -74,6 +74,122 @@ DEFAULT_GUIDANCE = {
     }
 }
 
+CROP_METADATA: Dict[str, Dict[str, Dict[str, str]]] = {
+    # Cotton
+    "Cotton___bacterial_blight": {
+        "crop": {"en": "Cotton", "hi": "कपास", "mr": "कापूस"},
+        "disease": {"en": "Bacterial Blight", "hi": "जीवाणु झुलसा", "mr": "जिवाणू करपा"},
+    },
+    "Cotton___curl_virus": {
+        "crop": {"en": "Cotton", "hi": "कपास", "mr": "कापूस"},
+        "disease": {"en": "Leaf Curl Virus", "hi": "पत्ती मरोड़ वायरस", "mr": "पाने आकुंचन विषाणू"},
+    },
+    "Cotton___fussarium_wilt": {
+        "crop": {"en": "Cotton", "hi": "कपास", "mr": "कापूस"},
+        "disease": {"en": "Fusarium Wilt", "hi": "उकठा (विल्ट)", "mr": "मर रोग (विल्ट)"},
+    },
+    "Cotton___healthy": {
+        "crop": {"en": "Cotton", "hi": "कपास", "mr": "कापूस"},
+        "disease": {"en": "Healthy Crop", "hi": "स्वस्थ फसल", "mr": "निरोगी पीक"},
+    },
+    # Turmeric
+    "Turmeric___Dry_Leaf": {
+        "crop": {"en": "Turmeric", "hi": "हल्दी", "mr": "हळद"},
+        "disease": {"en": "Dry Leaf / Wilting", "hi": "पत्तियों का सूखना", "mr": "पाने सुकणे"},
+    },
+    "Turmeric___Healthy_Leaf": {
+        "crop": {"en": "Turmeric", "hi": "हल्दी", "mr": "हळद"},
+        "disease": {"en": "Healthy Crop", "hi": "स्वस्थ फसल", "mr": "निरोगी पीक"},
+    },
+    "Turmeric___Leaf_Blotch": {
+        "crop": {"en": "Turmeric", "hi": "हल्दी", "mr": "हळद"},
+        "disease": {"en": "Leaf Blotch", "hi": "पत्ती धब्बा (ब्लॉच)", "mr": "पानावरील ठिपके (ब्लॉच)"},
+    },
+    # Soybean
+    "Soybean___Healthy_Soyabean": {
+        "crop": {"en": "Soybean", "hi": "सोयाबीन", "mr": "सोयाबीन"},
+        "disease": {"en": "Healthy Crop", "hi": "स्वस्थ फसल", "mr": "निरोगी पीक"},
+    },
+    "Soybean___Soyabean_Frog_Leaf_Eye": {
+        "crop": {"en": "Soybean", "hi": "सोयाबीन", "mr": "सोयाबीन"},
+        "disease": {"en": "Frogeye Leaf Spot", "hi": "मेंढक आंख धब्बा रोग", "mr": "बेडूक डोळा ठिपके रोग"},
+    },
+    "Soybean___Soyabean_Mosaic": {
+        "crop": {"en": "Soybean", "hi": "सोयाबीन", "mr": "सोयाबीन"},
+        "disease": {"en": "Mosaic Virus", "hi": "मोज़ेक वायरस", "mr": "मोझॅक विषाणू"},
+    },
+    "Soybean___Soyabean_Spectoria_Brown_Spot": {
+        "crop": {"en": "Soybean", "hi": "सोयाबीन", "mr": "सोयाबीन"},
+        "disease": {"en": "Septoria Brown Spot", "hi": "भूरा धब्बा रोग", "mr": "तपकिरी ठिपके रोग"},
+    },
+    # Tomato & Solanaceous
+    "Bacterial_Spot": {
+        "crop": {"en": "Tomato", "hi": "टमाटर", "mr": "टोमॅटो"},
+        "disease": {"en": "Bacterial Spot", "hi": "जीवाणु धब्बा", "mr": "जिवाणू ठिपके"},
+    },
+    "Early_Blight": {
+        "crop": {"en": "Tomato", "hi": "टमाटर", "mr": "टोमॅटो"},
+        "disease": {"en": "Early Blight", "hi": "अगेती झुलसा", "mr": "लवकर येणारा करपा"},
+    },
+    "Healthy": {
+        "crop": {"en": "Tomato", "hi": "टमाटर", "mr": "टोमॅटो"},
+        "disease": {"en": "Healthy Crop", "hi": "स्वस्थ फसल", "mr": "निरोगी पीक"},
+    },
+    "Late_Blight": {
+        "crop": {"en": "Tomato", "hi": "टमाटर", "mr": "टोमॅटो"},
+        "disease": {"en": "Late Blight", "hi": "पछेती झुलसा", "mr": "उशिरा येणारा करपा"},
+    },
+    "Septoria_Leaf_Spot": {
+        "crop": {"en": "Tomato", "hi": "टमाटर", "mr": "टोमॅटो"},
+        "disease": {"en": "Septoria Leaf Spot", "hi": "सेप्टोरिया पर्ण धब्बा", "mr": "सेप्टोरिया पानांवरील डाग"},
+    },
+    "Yellow_Leaf_Curl_Virus": {
+        "crop": {"en": "Tomato", "hi": "टमाटर", "mr": "टोमॅटो"},
+        "disease": {"en": "Yellow Leaf Curl Virus", "hi": "पीला पत्ती मरोड़ वायरस", "mr": "पिवळा पाने आकुंचन विषाणू"},
+    },
+    # Other Supported Species in PlantVillage
+    "Apple_Scab": {
+        "crop": {"en": "Apple", "hi": "सेब", "mr": "सफरचंद"},
+        "disease": {"en": "Apple Scab", "hi": "सेब स्केब", "mr": "स्कॅब रोग"},
+    },
+    "Black_Rot": {
+        "crop": {"en": "Grape", "hi": "अंगूर", "mr": "द्राक्ष"},
+        "disease": {"en": "Black Rot", "hi": "ब्लैक रॉट", "mr": "काळा कुजवा"},
+    },
+    "Cedar_Apple_Rust": {
+        "crop": {"en": "Apple", "hi": "सेब", "mr": "सफरचंद"},
+        "disease": {"en": "Cedar Apple Rust", "hi": "रस्ट (गेरुई)", "mr": "तांबेरा"},
+    },
+    "Cercospora_Leaf_Spot": {
+        "crop": {"en": "Corn / Maize", "hi": "मक्का", "mr": "मका"},
+        "disease": {"en": "Cercospora Leaf Spot", "hi": "पर्ण धब्बा", "mr": "पानावरील ठिपके"},
+    },
+    "Common_Rust_": {
+        "crop": {"en": "Corn / Maize", "hi": "मक्का", "mr": "मका"},
+        "disease": {"en": "Common Rust", "hi": "रतुआ (रस्ट)", "mr": "तांबेरा"},
+    },
+    "Esca_(Black_Measles)": {
+        "crop": {"en": "Grape", "hi": "अंगूर", "mr": "द्राक्ष"},
+        "disease": {"en": "Esca (Black Measles)", "hi": "एस्का रोग", "mr": "एस्का रोग"},
+    },
+    "Leaf_Blight": {
+        "crop": {"en": "Corn / Maize", "hi": "मक्का", "mr": "मका"},
+        "disease": {"en": "Leaf Blight", "hi": "पर्ण झुलसा", "mr": "पानांचा करपा"},
+    },
+    "Leaf_Scorch": {
+        "crop": {"en": "Strawberry", "hi": "स्ट्रॉबेरी", "mr": "स्ट्रॉबेरी"},
+        "disease": {"en": "Leaf Scorch", "hi": "पत्ती झुलसन", "mr": "पाने जळणे"},
+    },
+    "Northern_Leaf_Blight": {
+        "crop": {"en": "Corn / Maize", "hi": "मक्का", "mr": "मका"},
+        "disease": {"en": "Northern Leaf Blight", "hi": "उत्तरी पर्ण झुलसा", "mr": "उत्तर करपा रोग"},
+    },
+    "Powdery_Mildew": {
+        "crop": {"en": "Vegetable", "hi": "सब्जी", "mr": "भाजीपाला"},
+        "disease": {"en": "Powdery Mildew", "hi": "सफेद चूर्ण फफूंद", "mr": "भुरी रोग"},
+    },
+}
+
 _kb_cache: Dict[str, Any] = {}
 
 
@@ -89,30 +205,32 @@ def _load_kb() -> Dict[str, Any]:
     return _kb_cache
 
 
-def display_name(label: str, lang: str = "en") -> str:
-    """Return localized display name for a disease class label."""
+def get_crop_meta(label: str, lang: str = "en") -> Dict[str, str]:
+    """Return localized crop name and disease name for a label."""
     if lang not in SUPPORTED_LANGS:
         lang = DEFAULT_LANG
 
-    kb = _load_kb()
-    entry = kb.get(label)
-    if entry and "name" in entry:
-        names = entry["name"]
-        val = names.get(lang) or names.get(DEFAULT_LANG)
-        if val and not val.startswith("<NEEDS"):
-            return val
+    meta = CROP_METADATA.get(label)
+    if meta:
+        crop = meta["crop"].get(lang) or meta["crop"].get(DEFAULT_LANG, "Crop")
+        disease = meta["disease"].get(lang) or meta["disease"].get(DEFAULT_LANG, label)
+        return {"crop": crop, "disease": disease}
 
-    # Fallback to readable label
+    # Dynamic fallback for any unforeseen label
     if "___" in label:
-        crop, disease = label.split("___", 1)
-        return f"{crop.replace('_', ' ')} - {disease.replace('_', ' ')}"
+        parts = label.split("___", 1)
+        return {
+            "crop": parts[0].replace("_", " ").title(),
+            "disease": parts[1].replace("_", " ").title(),
+        }
 
-    # Prefix crop for known solanaceous classes
-    tomato_classes = {"Early_Blight", "Late_Blight", "Bacterial_Spot", "Septoria_Leaf_Spot", "Yellow_Leaf_Curl_Virus", "Healthy"}
-    if label in tomato_classes:
-        return f"Tomato - {label.replace('_', ' ')}"
+    return {"crop": "Crop", "disease": label.replace("_", " ").title()}
 
-    return label.replace("_", " ")
+
+def display_name(label: str, lang: str = "en") -> str:
+    """Return localized display name formatted as 'Crop — Disease'."""
+    meta = get_crop_meta(label, lang=lang)
+    return f"{meta['crop']} — {meta['disease']}"
 
 
 def get(label: str, lang: str = "en") -> Dict[str, Any]:

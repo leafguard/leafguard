@@ -3,89 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>LeafGuard — Crop Disease Scanner</title>
-  <meta name="description" content="Instant crop leaf disease identification and ICAR management advisory for smallholder farmers.">
+  <title>LeafGuard — Professional Crop Health Diagnostic</title>
+  <meta name="description" content="Instant crop leaf disease identification and official ICAR management advisory for smallholder farmers.">
   <link rel="manifest" href="/manifest.json">
-  <meta name="theme-color" content="#1e6b2c">
-  <!-- Google Fonts: Noto Sans Devanagari for Hindi/Marathi support -->
+  <meta name="theme-color" content="#184e38">
+  <!-- Google Fonts: Inter & Noto Sans Devanagari for clean typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <!-- Header -->
+
+  <!-- App Header -->
   <header class="app-header">
-    <div class="header-brand">
-      <span class="brand-logo" aria-hidden="true">🌿</span>
-      <h1 class="brand-title">LeafGuard</h1>
-    </div>
-    <!-- Language Selector -->
-    <div class="lang-switch" role="group" aria-label="Language selection">
-      <button type="button" class="lang-btn active" data-lang="en">EN</button>
-      <button type="button" class="lang-btn" data-lang="hi">हिंदी</button>
-      <button type="button" class="lang-btn" data-lang="mr">मराठी</button>
+    <div class="header-inner">
+      <div class="header-brand">
+        <div class="brand-icon-wrap" aria-hidden="true">
+          <svg class="brand-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
+            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-name">LeafGuard</span>
+          <span class="brand-sub">ICAR Agronomic AI</span>
+        </div>
+      </div>
+
+      <!-- Language Selector -->
+      <div class="lang-switch" role="group" aria-label="Select language">
+        <button type="button" class="lang-btn active" data-lang="en">EN</button>
+        <button type="button" class="lang-btn" data-lang="hi">हिंदी</button>
+        <button type="button" class="lang-btn" data-lang="mr">मराठी</button>
+      </div>
     </div>
   </header>
 
   <!-- Main Container -->
   <main class="app-container">
 
-    <!-- Screen 1: Home / Scanner -->
+    <!-- Screen 1: Home / Capture & Predict -->
     <section id="screen-home" class="screen active" aria-labelledby="home-heading">
+      
+      <!-- Headline Intro Banner -->
       <div class="card intro-card">
+        <div class="intro-badge">
+          <svg class="mini-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+          <span>Edge CPU Verified</span>
+        </div>
         <h2 id="home-heading" class="tagline" data-i18n="tagline">Scan a crop leaf to identify diseases with official ICAR advice.</h2>
       </div>
 
-      <!-- Crop Filter Selector (Optional) -->
+      <!-- Crop Filter Selector -->
       <div class="card crop-select-card">
-        <label for="cropSelect" class="form-label" data-i18n="cropLabel">Filter by Crop (Optional):</label>
-        <select id="cropSelect" class="form-select">
-          <option value="all" data-i18n="cropAll">🌱 Auto-Detect (All Crops)</option>
-          <option value="cotton" data-i18n="cropCotton">☁️ Cotton (कापूस / कपास)</option>
-          <option value="turmeric" data-i18n="cropTurmeric">🟡 Turmeric (हळद / हल्दी)</option>
-          <option value="soybean" data-i18n="cropSoybean">🫘 Soybean (सोयाबीन)</option>
-          <option value="tomato" data-i18n="cropTomato">🍅 Tomato & Vegetables</option>
-        </select>
+        <label for="cropSelect" class="form-label">
+          <svg class="field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 20h10"/><path d="M10 20c0-4.5 1.5-7.5 4-9"/><path d="M14 11c2.5 0 4.5-2 4.5-4.5S16.5 2 14 2s-4.5 2-4.5 4.5c0 .7.16 1.36.44 1.95"/>
+          </svg>
+          <span data-i18n="cropLabel">Filter by Crop (Optional):</span>
+        </label>
+        <div class="select-wrapper">
+          <select id="cropSelect" class="form-select">
+            <option value="all" data-i18n="cropAll">🌱 Auto-Detect (All Crops)</option>
+            <option value="cotton" data-i18n="cropCotton">☁️ Cotton (कापूस / कपास)</option>
+            <option value="turmeric" data-i18n="cropTurmeric">🟡 Turmeric (हळद / हल्दी)</option>
+            <option value="soybean" data-i18n="cropSoybean">🫘 Soybean (सोयाबीन)</option>
+            <option value="tomato" data-i18n="cropTomato">🍅 Tomato & Vegetables</option>
+          </select>
+        </div>
       </div>
 
-      <!-- Upload / Camera Area -->
+      <!-- Upload Actions Card -->
       <div class="card upload-card">
         <input type="file" id="cameraInput" accept="image/*" capture="environment" class="visually-hidden">
         <input type="file" id="galleryInput" accept="image/*" class="visually-hidden">
 
-        <div class="action-buttons">
-          <button type="button" id="cameraBtn" class="btn btn-primary btn-large">
-            <span class="btn-icon" aria-hidden="true">📷</span>
+        <div class="action-grid">
+          <button type="button" id="cameraBtn" class="btn btn-primary btn-action">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/>
+            </svg>
             <span data-i18n="takePhoto">Take Photo</span>
           </button>
-          <button type="button" id="galleryBtn" class="btn btn-secondary">
-            <span class="btn-icon" aria-hidden="true">🖼️</span>
+          
+          <button type="button" id="galleryBtn" class="btn btn-secondary btn-action">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
+            </svg>
             <span data-i18n="chooseGallery">Choose from Gallery</span>
           </button>
         </div>
 
+        <!-- Selected Preview Area -->
         <div id="imagePreviewContainer" class="preview-container hidden">
-          <img id="imagePreview" src="" alt="Selected leaf preview" class="preview-img">
-          <button type="button" id="scanBtn" class="btn btn-primary btn-large">
-            <span class="btn-icon" aria-hidden="true">🔍</span>
+          <div class="preview-frame">
+            <img id="imagePreview" src="" alt="Selected leaf preview" class="preview-img">
+          </div>
+          <button type="button" id="scanBtn" class="btn btn-primary btn-diagnose">
+            <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/>
+            </svg>
             <span data-i18n="scanNow">Diagnose Leaf</span>
           </button>
         </div>
 
-        <!-- Loading Spinner -->
+        <!-- Processing Indicator -->
         <div id="loadingIndicator" class="loading-box hidden" role="status" aria-live="polite">
-          <div class="spinner"></div>
-          <p data-i18n="processing">Analyzing leaf patterns on CPU...</p>
+          <div class="spinner-ring"></div>
+          <p class="loading-text" data-i18n="processing">Analyzing leaf patterns on CPU...</p>
         </div>
 
-        <!-- Error Message Banner -->
+        <!-- Error Notification -->
         <div id="errorBanner" class="alert-box alert-error hidden" role="alert"></div>
       </div>
 
-      <!-- Tips Card -->
+      <!-- Field Tips Card -->
       <div class="card tips-card">
-        <h3 class="card-title" data-i18n="tipsTitle">💡 Tips for Best Accuracy:</h3>
+        <div class="tips-header">
+          <svg class="tips-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-1 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/>
+          </svg>
+          <h3 class="card-title" data-i18n="tipsTitle">Tips for Best Accuracy:</h3>
+        </div>
         <ul class="tips-list">
           <li data-i18n="tip1">Take photo in clear daylight (avoid flash glare).</li>
           <li data-i18n="tip2">Hold phone steady and close to the infected leaf area.</li>
@@ -94,105 +134,186 @@
       </div>
     </section>
 
-    <!-- Screen 2: Diagnostic Results -->
+    <!-- Screen 2: Diagnostic Results Screen -->
     <section id="screen-result" class="screen hidden" aria-labelledby="result-heading">
-      <div class="card result-card">
-        <!-- Blur Alert Banner -->
-        <div id="blurWarning" class="alert-box alert-warning hidden" role="alert">
-          <span aria-hidden="true">⚠️</span>
-          <span data-i18n="blurNotice">Photo appears blurry. If result seems incorrect, retake in better light.</span>
-        </div>
+      
+      <!-- Blurriness Warning Notice -->
+      <div id="blurWarning" class="alert-box alert-warning hidden" role="alert">
+        <svg class="alert-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <span data-i18n="blurNotice">Photo appears blurry. If result seems incorrect, retake in better light.</span>
+      </div>
 
-        <!-- Header: Status Badge & Disease Title -->
-        <div class="result-header">
+      <!-- Primary Diagnostic Hero Card -->
+      <div class="card result-card">
+        <div class="result-top-layout">
           <div class="result-photo-wrap">
             <img id="resultPhoto" src="" alt="Diagnosed leaf" class="result-photo">
           </div>
-          <div class="result-title-group">
-            <span id="statusBadge" class="status-badge status-confident">Confident</span>
-            <h2 id="diseaseTitle" class="disease-title">Loading...</h2>
+          
+          <div class="result-details">
+            <!-- 1. Primary Category: Crop Identification Tag -->
+            <div class="crop-category-badge">
+              <svg class="crop-badge-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 20h10"/><path d="M10 20c0-4.5 1.5-7.5 4-9"/><path d="M14 11c2.5 0 4.5-2 4.5-4.5S16.5 2 14 2s-4.5 2-4.5 4.5c0 .7.16 1.36.44 1.95"/>
+              </svg>
+              <span class="crop-prefix" data-i18n="cropPrefix">CROP:</span>
+              <strong id="resultCropName" class="crop-name">Tomato</strong>
+            </div>
+
+            <!-- 2. Disease Condition Title -->
+            <h2 id="diseaseTitle" class="disease-title">Septoria Leaf Spot</h2>
+            
+            <!-- 3. Status Badge -->
+            <div class="status-wrap">
+              <span id="statusBadge" class="status-badge status-confident">Confident</span>
+            </div>
           </div>
         </div>
 
-        <!-- Confidence Meter -->
+        <!-- Confidence Gauge Bar -->
         <div class="confidence-wrap">
           <div class="confidence-labels">
-            <span data-i18n="confidence">Confidence:</span>
+            <span class="confidence-title" data-i18n="confidence">Confidence:</span>
             <span id="confidenceValue" class="confidence-value">0%</span>
           </div>
           <div class="confidence-bar-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100">
             <div id="confidenceBar" class="confidence-bar-fill" style="width: 0%;"></div>
           </div>
         </div>
+      </div>
 
-        <!-- Voice Read Aloud -->
-        <div class="voice-action-wrap">
-          <button type="button" id="voiceBtn" class="btn btn-voice">
-            <span class="btn-icon" aria-hidden="true">🔊</span>
-            <span data-i18n="listenAdvice">Listen Advisory</span>
-          </button>
-        </div>
+      <!-- Professional Audio Advisory Player Card -->
+      <div id="voicePlayerCard" class="card voice-player-card">
+        <div class="voice-player-inner">
+          <div class="voice-speaker-badge" aria-hidden="true">
+            <svg class="voice-speaker-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/>
+            </svg>
+          </div>
 
-        <!-- Differential Top-3 Predictions -->
-        <div class="top3-section">
-          <h4 class="top3-title" data-i18n="top3Title">Top Differential Possibilities:</h4>
-          <ul id="top3List" class="top3-list"></ul>
-        </div>
+          <div class="voice-meta">
+            <h4 class="voice-title" data-i18n="voiceTitle">Voice Advisory (ICAR)</h4>
+            <p id="voiceStatus" class="voice-status" data-i18n="voiceReady">Tap to listen in chosen language</p>
+          </div>
 
-        <!-- Unrecognised Guidance Card -->
-        <div id="unrecognisedCard" class="unrecognised-box hidden">
-          <p class="unrecognised-text" data-i18n="unrecognisedMsg">
-            We could not identify this disease with certainty. Please photograph a close-up of a supported crop leaf (Cotton, Soybean, Turmeric, Tomato) in clear daylight.
-          </p>
-        </div>
-
-        <!-- Sourced ICAR Advisory Accordion -->
-        <div id="advisorySection" class="advisory-section">
-          <!-- Symptoms -->
-          <details class="advisory-item" open>
-            <summary class="advisory-summary">
-              <span class="advisory-icon" aria-hidden="true">🔍</span>
-              <span data-i18n="symptoms">Symptoms to verify</span>
-            </summary>
-            <div id="symptomsContent" class="advisory-content"></div>
-          </details>
-
-          <!-- What to do now (Actions) -->
-          <details class="advisory-item" open>
-            <summary class="advisory-summary">
-              <span class="advisory-icon" aria-hidden="true">⚡</span>
-              <span data-i18n="actions">What to do now (Immediate Action)</span>
-            </summary>
-            <div id="actionsContent" class="advisory-content"></div>
-          </details>
-
-          <!-- Prevention -->
-          <details class="advisory-item">
-            <summary class="advisory-summary">
-              <span class="advisory-icon" aria-hidden="true">🛡️</span>
-              <span data-i18n="prevention">Prevention for next season</span>
-            </summary>
-            <div id="preventionContent" class="advisory-content"></div>
-          </details>
-
-          <!-- Source & Legal Disclaimer -->
-          <div class="source-card">
-            <p class="source-info">
-              <span data-i18n="sourceLabel">Source:</span>
-              <a id="sourceLink" href="https://icar.org.in" target="_blank" rel="noopener">ICAR Extension</a>
-            </p>
-            <p id="disclaimerText" class="disclaimer-text"></p>
+          <div class="voice-ctrl-group">
+            <button type="button" id="voicePlayBtn" class="btn-voice-ctrl btn-play" aria-label="Play or Pause Advisory Audio">
+              <svg id="iconPlay" class="svg-ctrl-icon" viewBox="0 0 24 24" fill="currentColor">
+                <polygon points="6 4 20 12 6 20 6 4"/>
+              </svg>
+              <svg id="iconPause" class="svg-ctrl-icon hidden" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>
+              </svg>
+            </button>
+            <button type="button" id="voiceStopBtn" class="btn-voice-ctrl btn-stop hidden" aria-label="Stop audio">
+              <svg class="svg-ctrl-icon" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="6" y="6" width="12" height="12" rx="2"/>
+              </svg>
+            </button>
           </div>
         </div>
-
-        <!-- Retake Button -->
-        <div class="result-actions">
-          <button type="button" id="scanAnotherBtn" class="btn btn-primary btn-large">
-            <span class="btn-icon" aria-hidden="true">🔄</span>
-            <span data-i18n="scanAnother">Scan Another Leaf</span>
-          </button>
-        </div>
       </div>
+
+      <!-- Differential Top 3 Possibilities -->
+      <div class="card differential-card">
+        <h4 class="differential-title" data-i18n="top3Title">Top Differential Possibilities:</h4>
+        <ul id="top3List" class="top3-list"></ul>
+      </div>
+
+      <!-- Unrecognised / Low Confidence Notice -->
+      <div id="unrecognisedCard" class="card unrecognised-card hidden">
+        <div class="unrec-icon-wrap" aria-hidden="true">
+          <svg class="unrec-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+          </svg>
+        </div>
+        <p class="unrecognised-text" data-i18n="unrecognisedMsg">
+          We could not identify this disease with certainty. Please photograph a close-up of a supported crop leaf (Cotton, Soybean, Turmeric, Tomato) in clear daylight.
+        </p>
+      </div>
+
+      <!-- Sourced ICAR Advisory Info Cards (Accordions) -->
+      <div id="advisorySection" class="advisory-container">
+        
+        <!-- Card 1: Symptoms -->
+        <details class="advisory-card" open>
+          <summary class="advisory-summary">
+            <div class="summary-left">
+              <div class="card-icon-wrap icon-symptoms" aria-hidden="true">
+                <svg class="card-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M11 8v6"/><path d="M8 11h6"/>
+                </svg>
+              </div>
+              <span class="summary-title" data-i18n="symptoms">Symptoms to verify</span>
+            </div>
+            <svg class="chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div id="symptomsContent" class="advisory-content"></div>
+        </details>
+
+        <!-- Card 2: Immediate Actions -->
+        <details class="advisory-card" open>
+          <summary class="advisory-summary">
+            <div class="summary-left">
+              <div class="card-icon-wrap icon-actions" aria-hidden="true">
+                <svg class="card-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+              </div>
+              <span class="summary-title" data-i18n="actions">What to do now (Immediate Action)</span>
+            </div>
+            <svg class="chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div id="actionsContent" class="advisory-content"></div>
+        </details>
+
+        <!-- Card 3: Seasonal Prevention -->
+        <details class="advisory-card">
+          <summary class="advisory-summary">
+            <div class="summary-left">
+              <div class="card-icon-wrap icon-prevention" aria-hidden="true">
+                <svg class="card-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/>
+                </svg>
+              </div>
+              <span class="summary-title" data-i18n="prevention">Prevention for next season</span>
+            </div>
+            <svg class="chevron-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </summary>
+          <div id="preventionContent" class="advisory-content"></div>
+        </details>
+
+        <!-- Sourced Citation Card -->
+        <div class="card source-card">
+          <div class="source-header">
+            <svg class="source-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/>
+            </svg>
+            <div class="source-text-wrap">
+              <span class="source-tag" data-i18n="sourceLabel">Source:</span>
+              <a id="sourceLink" href="https://icar.org.in" target="_blank" rel="noopener" class="source-anchor">
+                <span>ICAR Extension Advisory</span>
+                <svg class="ext-link-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+          <p id="disclaimerText" class="disclaimer-text"></p>
+        </div>
+
+      </div>
+
+      <!-- Rescan / Reset Action -->
+      <div class="result-actions">
+        <button type="button" id="scanAnotherBtn" class="btn btn-primary btn-large">
+          <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+          </svg>
+          <span data-i18n="scanAnother">Scan Another Leaf</span>
+        </button>
+      </div>
+
     </section>
 
     <!-- Screen 3: History -->
@@ -247,15 +368,21 @@
   <!-- Bottom Navigation Bar -->
   <nav class="bottom-nav" aria-label="Main Navigation">
     <button type="button" class="nav-item active" data-target="screen-home">
-      <span class="nav-icon" aria-hidden="true">📷</span>
+      <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/>
+      </svg>
       <span class="nav-label" data-i18n="navScan">Scan</span>
     </button>
     <button type="button" class="nav-item" data-target="screen-history">
-      <span class="nav-icon" aria-hidden="true">📜</span>
+      <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+      </svg>
       <span class="nav-label" data-i18n="navHistory">History</span>
     </button>
     <button type="button" class="nav-item" data-target="screen-about">
-      <span class="nav-icon" aria-hidden="true">ℹ️</span>
+      <svg class="nav-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/>
+      </svg>
       <span class="nav-label" data-i18n="navAbout">About</span>
     </button>
   </nav>

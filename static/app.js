@@ -1,4 +1,4 @@
-// LeafGuard Client Application (Vanilla JS, Phone-First)
+// LeafGuard Client Application (Vanilla JS, Phone-First, Minimalist)
 (() => {
   "use strict";
 
@@ -16,14 +16,17 @@
       chooseGallery: "Choose from Gallery",
       scanNow: "Diagnose Leaf",
       processing: "Analyzing leaf patterns on CPU...",
-      tipsTitle: "💡 Tips for Best Accuracy:",
+      tipsTitle: "Tips for Best Accuracy:",
       tip1: "Take photo in clear daylight (avoid flash glare).",
       tip2: "Hold phone steady and close to the infected leaf area.",
       tip3: "Avoid shadows, fingers, and background clutter.",
       blurNotice: "Photo appears blurry. If result seems incorrect, retake in better light.",
+      cropPrefix: "CROP:",
       confidence: "Confidence:",
-      listenAdvice: "Listen Advisory",
-      listening: "Playing Audio...",
+      voiceTitle: "Voice Advisory (ICAR)",
+      voiceReady: "Tap to listen in chosen language",
+      voicePlaying: "Playing audio advisory...",
+      voicePaused: "Audio paused — Tap to resume",
       top3Title: "Top Differential Possibilities:",
       unrecognisedMsg: "We could not identify this disease with certainty. Please photograph a close-up of a supported crop leaf (Cotton, Soybean, Turmeric, Tomato) in clear daylight.",
       symptoms: "Symptoms to verify",
@@ -64,14 +67,17 @@
       chooseGallery: "गैलरी से चुनें",
       scanNow: "रोग की जांच करें",
       processing: "पत्ती के लक्षणों का विश्लेषण हो रहा है...",
-      tipsTitle: "💡 सही पहचान के लिए सुझाव:",
+      tipsTitle: "सटीक पहचान के लिए सुझाव:",
       tip1: "दिन की प्राकृतिक धूप में साफ फोटो लें (फ्लैश से बचें)।",
       tip2: "मोबाइल को स्थिर रखें और रोगग्रस्त पत्ती के करीब ले जाएं।",
       tip3: "फोटो में छाया, अंगुलियां या अन्य कचरा न आने दें।",
       blurNotice: "फोटो धुंधली लग रही है। अच्छी रोशनी में दोबारा फोटो लें।",
+      cropPrefix: "फसल:",
       confidence: "विश्वसनीयता:",
-      listenAdvice: "सलाह सुनें",
-      listening: "सलाह पढ़ रहे हैं...",
+      voiceTitle: "ऑडियो सलाहकार (ICAR)",
+      voiceReady: "सलाह सुनने के लिए दबाएं",
+      voicePlaying: "सलाह पढ़ रहे हैं...",
+      voicePaused: "ऑडियो रुका हुआ है — फिर से चलाएं",
       top3Title: "शीर्ष संभावित रोग:",
       unrecognisedMsg: "रोग की पुष्टि विश्वास के साथ नहीं हो सकी। कृपया कपास, सोयाबीन, हल्दी या टमाटर की पत्ती की साफ फोटो लें।",
       symptoms: "रोग के लक्षण",
@@ -112,14 +118,17 @@
       chooseGallery: "गॅलरीतून निवडा",
       scanNow: "रोग निदान करा",
       processing: "पानावरील रोगाचे विश्लेषण सुरू आहे...",
-      tipsTitle: "💡 अचूक निदानासाठी टिप्स:",
+      tipsTitle: "अचूक निदानासाठी टिप्स:",
       tip1: "दिवसाच्या उजेडात स्पष्ट फोटो काढा (फ्लॅश टाळा).",
       tip2: "फोन स्थिर धरून बाधित पानाजवळ नेऊन फोटो घ्या.",
       tip3: "फोटोत सावली, बोटे किंवा इतर कचरा येऊ देऊ नका.",
       blurNotice: "फोटो अस्पष्ट (धुसर) दिसत आहे. चांगल्या प्रकाशात पुन्हा फोटो घ्या.",
+      cropPrefix: "पीक:",
       confidence: "विश्वासार्हता:",
-      listenAdvice: "सल्ला ऐका",
-      listening: "सल्ला वाचत आहे...",
+      voiceTitle: "ऑडिओ सल्लागार (ICAR)",
+      voiceReady: "सल्ला ऐकण्यासाठी दाबा",
+      voicePlaying: "सल्ला ऐकवत आहे...",
+      voicePaused: "ऑडिओ थांबवला आहे — पुन्हा सुरू करा",
       top3Title: "संभाव्य रोग यादी:",
       unrecognisedMsg: "रोगाची खात्रीशीर ओळख पटू शकली नाही. कृपया कापूस, सोयाबीन, हळद किंवा टोमॅटोच्या पानाचा जवळून स्पष्ट फोटो काढा.",
       symptoms: "रोगाची लक्षणे",
@@ -150,16 +159,15 @@
     }
   };
 
-  // --- 2. State Management ---
+  // --- 2. State & DOM Elements ---
   let currentLang = localStorage.getItem("leafguard_lang") || "en";
   let currentFileBlob = null;
   let lastPredictionData = null;
 
-  // DOM Elements
-  const cameraInput = document.getElementById("cameraInput");
-  const galleryInput = document.getElementById("galleryInput");
   const cameraBtn = document.getElementById("cameraBtn");
   const galleryBtn = document.getElementById("galleryBtn");
+  const cameraInput = document.getElementById("cameraInput");
+  const galleryInput = document.getElementById("galleryInput");
   const scanBtn = document.getElementById("scanBtn");
   const scanAnotherBtn = document.getElementById("scanAnotherBtn");
   const cropSelect = document.getElementById("cropSelect");
@@ -167,10 +175,22 @@
   const imagePreview = document.getElementById("imagePreview");
   const loadingIndicator = document.getElementById("loadingIndicator");
   const errorBanner = document.getElementById("errorBanner");
-  const voiceBtn = document.getElementById("voiceBtn");
   const clearHistoryBtn = document.getElementById("clearHistoryBtn");
 
-  // --- 3. Language Switching & UI Translation ---
+  // Voice Elements
+  const voicePlayBtn = document.getElementById("voicePlayBtn");
+  const voiceStopBtn = document.getElementById("voiceStopBtn");
+  const iconPlay = document.getElementById("iconPlay");
+  const iconPause = document.getElementById("iconPause");
+  const voiceStatus = document.getElementById("voiceStatus");
+
+  const escapeHtml = (str) => {
+    const div = document.createElement("div");
+    div.textContent = str || "";
+    return div.innerHTML;
+  };
+
+  // --- 3. Language Switching ---
   function setLanguage(lang) {
     if (!STRINGS[lang]) lang = "en";
     currentLang = lang;
@@ -182,15 +202,13 @@
 
     document.querySelectorAll("[data-i18n]").forEach(el => {
       const key = el.dataset.i18n;
-      if (STRINGS[lang][key]) {
-        el.textContent = STRINGS[lang][key];
-      }
+      if (STRINGS[lang][key]) el.textContent = STRINGS[lang][key];
     });
 
+    resetVoicePlayer();
     if (lastPredictionData) {
       renderResult(lastPredictionData);
     }
-    renderHistory();
   }
 
   document.querySelectorAll(".lang-btn").forEach(btn => {
@@ -199,6 +217,7 @@
 
   // --- 4. Navigation (Screens: Home, Result, History, About) ---
   function showScreen(screenId) {
+    resetVoicePlayer();
     document.querySelectorAll(".screen").forEach(s => s.classList.add("hidden"));
     const target = document.getElementById(screenId);
     if (target) target.classList.remove("hidden");
@@ -319,6 +338,7 @@
   });
 
   scanAnotherBtn.addEventListener("click", () => {
+    resetVoicePlayer();
     currentFileBlob = null;
     imagePreviewContainer.classList.add("hidden");
     cameraInput.value = "";
@@ -328,6 +348,7 @@
 
   // --- 7. Result Rendering ---
   function renderResult(data) {
+    resetVoicePlayer();
     const isUnrec = data.status === "unrecognised";
     const topItem = data.top && data.top[0] ? data.top[0] : null;
 
@@ -343,25 +364,41 @@
     // Blur Warning
     document.getElementById("blurWarning").classList.toggle("hidden", !data.blurry);
 
-    // Disease Title
+    // 1. Primary Category: Prominent Crop Badge
+    const cropEl = document.getElementById("resultCropName");
+    if (cropEl) {
+      cropEl.textContent = topItem && topItem.crop ? topItem.crop : "Crop";
+    }
+
+    // 2. Specific Condition / Disease Title
     const titleEl = document.getElementById("diseaseTitle");
-    titleEl.textContent = topItem ? topItem.name : "Leaf Scan";
+    if (titleEl) {
+      titleEl.textContent = topItem ? (topItem.disease || topItem.name) : "Leaf Diagnosis";
+    }
 
     // Confidence Progress Bar
     const prob = topItem ? Math.round(topItem.prob * 100) : 0;
     document.getElementById("confidenceValue").textContent = `${prob}%`;
     const bar = document.getElementById("confidenceBar");
     bar.style.width = `${prob}%`;
-    bar.style.backgroundColor = data.status === "confident" ? "var(--primary)" : (data.status === "uncertain" ? "var(--badge-uncertain)" : "var(--badge-unrecognised)");
+    bar.style.backgroundColor = data.status === "confident" ? "var(--primary)" : (data.status === "uncertain" ? "var(--status-unc-text)" : "var(--status-unrec-text)");
 
-    // Top 3 List
+    // Top 3 List with Crop Tag and Condition Name
     const top3List = document.getElementById("top3List");
     top3List.innerHTML = "";
     if (data.top) {
       data.top.slice(0, 3).forEach((item) => {
         const li = document.createElement("li");
         li.className = "top3-item";
-        li.innerHTML = `<span>${item.name}</span><strong>${Math.round(item.prob * 100)}%</strong>`;
+        const cropPill = item.crop ? `<span class="top3-crop-pill">${escapeHtml(item.crop)}</span>` : "";
+        const diseaseName = item.disease || item.name;
+        li.innerHTML = `
+          <div class="top3-left">
+            ${cropPill}
+            <span class="top3-name">${escapeHtml(diseaseName)}</span>
+          </div>
+          <strong class="top3-prob">${Math.round(item.prob * 100)}%</strong>
+        `;
         top3List.appendChild(li);
       });
     }
@@ -369,23 +406,18 @@
     // Toggle Advisory vs Unrecognised Notice
     const advSection = document.getElementById("advisorySection");
     const unrecCard = document.getElementById("unrecognisedCard");
-    const voiceActionWrap = document.querySelector(".voice-action-wrap");
+    const voiceCard = document.getElementById("voicePlayerCard");
 
     if (isUnrec) {
       advSection.classList.add("hidden");
       unrecCard.classList.remove("hidden");
-      voiceActionWrap.classList.add("hidden");
+      voiceCard.classList.add("hidden");
     } else {
       advSection.classList.remove("hidden");
       unrecCard.classList.add("hidden");
-      voiceActionWrap.classList.remove("hidden");
+      voiceCard.classList.remove("hidden");
 
       const adv = data.advice || {};
-      const escapeHtml = (str) => {
-        const div = document.createElement("div");
-        div.textContent = str || "";
-        return div.innerHTML;
-      };
       const formatList = (arr) => {
         if (!arr || (Array.isArray(arr) && arr.length === 0)) {
           return "<p>No specific guidance available.</p>";
@@ -401,31 +433,62 @@
 
       const src = adv.source || {};
       const srcLink = document.getElementById("sourceLink");
-      srcLink.textContent = src.name || "ICAR Extension Advisory";
+      srcLink.querySelector("span").textContent = src.name || "ICAR Extension Advisory";
       srcLink.href = src.url || "https://icar.org.in";
 
       document.getElementById("disclaimerText").textContent = adv.disclaimer || "";
     }
   }
 
-  // --- 8. Voice Read-Aloud (speechSynthesis) ---
-  voiceBtn.addEventListener("click", () => {
+  // --- 8. Voice Audio Controller (Play / Pause / Stop) ---
+  function resetVoicePlayer() {
+    if ("speechSynthesis" in window) {
+      window.speechSynthesis.cancel();
+    }
+    if (iconPlay) iconPlay.classList.remove("hidden");
+    if (iconPause) iconPause.classList.add("hidden");
+    if (voiceStopBtn) voiceStopBtn.classList.add("hidden");
+    if (voiceStatus && STRINGS[currentLang]) {
+      voiceStatus.textContent = STRINGS[currentLang].voiceReady;
+    }
+  }
+
+  voicePlayBtn.addEventListener("click", () => {
     if (!("speechSynthesis" in window)) {
       alert("Text-to-speech is not supported on this browser.");
       return;
     }
 
-    window.speechSynthesis.cancel();
+    // Toggle Pause/Resume if currently active
+    if (window.speechSynthesis.speaking) {
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+        iconPlay.classList.add("hidden");
+        iconPause.classList.remove("hidden");
+        voiceStatus.textContent = STRINGS[currentLang].voicePlaying;
+      } else {
+        window.speechSynthesis.pause();
+        iconPlay.classList.remove("hidden");
+        iconPause.classList.add("hidden");
+        voiceStatus.textContent = STRINGS[currentLang].voicePaused;
+      }
+      return;
+    }
+
+    // Start fresh speech utterance
     if (!lastPredictionData || !lastPredictionData.advice) return;
 
     const adv = lastPredictionData.advice;
+    const topItem = lastPredictionData.top && lastPredictionData.top[0] ? lastPredictionData.top[0] : null;
+    const cropHeading = topItem && topItem.crop ? `${topItem.crop}: ` : "";
+    const diseaseHeading = topItem ? (topItem.disease || topItem.name) : adv.title;
+
     const actionsText = Array.isArray(adv.actions) ? adv.actions.join(". ") : adv.actions;
-    const spokenText = `${adv.title}. ${actionsText}`;
+    const spokenText = `${cropHeading}${diseaseHeading}. ${actionsText}`;
 
     const utter = new SpeechSynthesisUtterance(spokenText);
-    utter.rate = 0.95;
+    utter.rate = 0.92;
 
-    // Map language to speech locale
     const voiceLangMap = { en: "en-IN", hi: "hi-IN", mr: "mr-IN" };
     utter.lang = voiceLangMap[currentLang] || "en-IN";
 
@@ -433,15 +496,38 @@
     const match = voices.find(v => v.lang.startsWith(utter.lang) || v.lang.startsWith(currentLang));
     if (match) utter.voice = match;
 
-    voiceBtn.textContent = STRINGS[currentLang].listening;
-    utter.onend = () => {
-      voiceBtn.innerHTML = `<span class="btn-icon" aria-hidden="true">🔊</span> <span>${STRINGS[currentLang].listenAdvice}</span>`;
+    utter.onstart = () => {
+      iconPlay.classList.add("hidden");
+      iconPause.classList.remove("hidden");
+      voiceStopBtn.classList.remove("hidden");
+      voiceStatus.textContent = STRINGS[currentLang].voicePlaying;
     };
+
+    utter.onpause = () => {
+      iconPlay.classList.remove("hidden");
+      iconPause.classList.add("hidden");
+      voiceStatus.textContent = STRINGS[currentLang].voicePaused;
+    };
+
+    utter.onresume = () => {
+      iconPlay.classList.add("hidden");
+      iconPause.classList.remove("hidden");
+      voiceStatus.textContent = STRINGS[currentLang].voicePlaying;
+    };
+
+    utter.onend = () => {
+      resetVoicePlayer();
+    };
+
     utter.onerror = () => {
-      voiceBtn.innerHTML = `<span class="btn-icon" aria-hidden="true">🔊</span> <span>${STRINGS[currentLang].listenAdvice}</span>`;
+      resetVoicePlayer();
     };
 
     window.speechSynthesis.speak(utter);
+  });
+
+  voiceStopBtn.addEventListener("click", () => {
+    resetVoicePlayer();
   });
 
   // --- 9. Local Scan History (localStorage) ---
@@ -450,6 +536,8 @@
       const history = JSON.parse(localStorage.getItem("leafguard_history") || "[]");
       const topItem = data.top && data.top[0] ? data.top[0] : { name: "Unknown" };
       const entry = {
+        crop: topItem.crop || "",
+        disease: topItem.disease || topItem.name,
         name: topItem.name,
         status: data.status,
         prob: Math.round((topItem.prob || 0) * 100),
@@ -477,10 +565,14 @@
       history.forEach(item => {
         const li = document.createElement("li");
         li.className = "history-item";
+        const cropPill = item.crop ? `<span class="top3-crop-pill">${escapeHtml(item.crop)}</span>` : "";
         li.innerHTML = `
-          <div>
-            <strong>${item.name}</strong>
-            <div style="font-size:0.75rem; color:var(--text-muted);">${item.date}</div>
+          <div class="history-item-left">
+            <div style="display:flex;align-items:center;gap:0.4rem;">
+              ${cropPill}
+              <strong class="history-disease">${escapeHtml(item.disease || item.name)}</strong>
+            </div>
+            <span class="history-date">${item.date}</span>
           </div>
           <div>
             <span class="status-badge status-${item.status}">${item.prob}%</span>

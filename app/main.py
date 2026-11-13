@@ -7,7 +7,7 @@ from PIL import Image, ImageOps, UnidentifiedImageError
 
 from app.version import get_version
 from app.inference import predict as model_predict, blur_score, is_dummy
-from app.advisory import get as get_advisory, display_name as get_display_name
+from app.advisory import get as get_advisory, display_name as get_display_name, get_crop_meta
 
 # Threshold constants tuned on field photos (calibrated in M5)
 CONF_OK = 0.40
@@ -78,7 +78,10 @@ async def predict(
     # 6. Execute ONNX model inference (crop-conditioned or global)
     top_preds = model_predict(img, top_k=3, crop=crop)
     for item in top_preds:
-        item["name"] = get_display_name(item["label"], lang=lang)
+        meta = get_crop_meta(item["label"], lang=lang)
+        item["crop"] = meta["crop"]
+        item["disease"] = meta["disease"]
+        item["name"] = f"{meta['crop']} — {meta['disease']}"
 
     top_prob = top_preds[0]["prob"] if top_preds else 0.0
 
