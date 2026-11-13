@@ -45,6 +45,23 @@ def test_predict_endpoint_valid_image():
     assert "advice" in data
 
 
+def test_predict_endpoint_with_crop_filter():
+    img_bytes = make_dummy_jpeg()
+    response = client.post(
+        "/predict",
+        files={"file": ("leaf.jpg", img_bytes, "image/jpeg")},
+        data={"lang": "en", "crop": "tomato"},
+    )
+    assert response.status_code == 200
+    data = response.json()
+    assert data["status"] in ("confident", "uncertain")
+    assert len(data["top"]) <= 3
+    # Top prediction must belong to tomato family
+    tomato_labels = {"Bacterial_Spot", "Early_Blight", "Healthy", "Late_Blight", "Septoria_Leaf_Spot", "Yellow_Leaf_Curl_Virus"}
+    for pred in data["top"]:
+        assert pred["label"] in tomato_labels
+
+
 def test_predict_rejects_oversized():
     huge_bytes = b"0" * (9 * 1024 * 1024)  # 9 MB
     response = client.post(

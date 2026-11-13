@@ -9,9 +9,9 @@ from app.version import get_version
 from app.inference import predict as model_predict, blur_score, is_dummy
 from app.advisory import get as get_advisory, display_name as get_display_name
 
-# Threshold constants tuned on field photos (tune in M5)
-CONF_OK = 0.70
-CONF_LOW = 0.45
+# Threshold constants tuned on field photos (calibrated in M5)
+CONF_OK = 0.40
+CONF_LOW = 0.20
 BLUR_MIN = 40.0
 
 # Max decompressed image pixels to prevent decompression bombs (50 megapixels)
@@ -34,7 +34,11 @@ def version() -> dict:
 
 
 @app.post("/predict")
-async def predict(file: UploadFile = File(...), lang: str = Form("en")) -> dict:
+async def predict(
+    file: UploadFile = File(...),
+    lang: str = Form("en"),
+    crop: str = Form("all"),
+) -> dict:
     """Validate image upload, execute ONNX inference, and return status bands."""
     # 1. Read bytes and enforce 8 MB payload limit (HTTP 413)
     contents = await file.read()
@@ -71,8 +75,8 @@ async def predict(file: UploadFile = File(...), lang: str = Form("en")) -> dict:
     blur_val = blur_score(img)
     is_blurry = blur_val < BLUR_MIN
 
-    # 6. Execute ONNX model inference
-    top_preds = model_predict(img, top_k=3)
+    # 6. Execute ONNX model inference (crop-conditioned or global)
+    top_preds = model_predict(img, top_k=3, crop=crop)
     for item in top_preds:
         item["name"] = get_display_name(item["label"], lang=lang)
 

@@ -73,6 +73,35 @@ def preprocess(img: Image.Image) -> np.ndarray:
     return tensor.astype(np.float32)
 
 
+CROP_FAMILY_MAP: Dict[str, List[str]] = {
+    "cotton": [
+        "Cotton___bacterial_blight",
+        "Cotton___curl_virus",
+        "Cotton___fussarium_wilt",
+        "Cotton___healthy",
+    ],
+    "turmeric": [
+        "Turmeric___Dry_Leaf",
+        "Turmeric___Healthy_Leaf",
+        "Turmeric___Leaf_Blotch",
+    ],
+    "soybean": [
+        "Soybean___Healthy_Soyabean",
+        "Soybean___Soyabean_Frog_Leaf_Eye",
+        "Soybean___Soyabean_Mosaic",
+        "Soybean___Soyabean_Spectoria_Brown_Spot",
+    ],
+    "tomato": [
+        "Bacterial_Spot",
+        "Early_Blight",
+        "Healthy",
+        "Late_Blight",
+        "Septoria_Leaf_Spot",
+        "Yellow_Leaf_Curl_Virus",
+    ],
+}
+
+
 def blur_score(img: Image.Image) -> float:
     """Compute Laplacian variance on 256x256 grayscale to detect blurriness.
 
@@ -96,8 +125,17 @@ def blur_score(img: Image.Image) -> float:
     return float(laplacian.var())
 
 
-def predict(img: Image.Image, top_k: int = 3) -> List[Dict[str, Any]]:
-    """Run model inference and return top-k predictions with calibrated probabilities."""
+def predict(
+    img: Image.Image,
+    top_k: int = 3,
+    crop: Optional[str] = None,
+) -> List[Dict[str, Any]]:
+    """Run model inference and return top-k predictions with calibrated probabilities.
+
+    If crop is provided and matches a known crop family, probabilities are
+    conditioned on that crop (Bayesian prior). Otherwise, global probabilities
+    across all 27 classes are used.
+    """
     tensor = preprocess(img)
 
     # Run ONNX model on CPU
@@ -109,7 +147,23 @@ def predict(img: Image.Image, top_k: int = 3) -> List[Dict[str, Any]]:
     exp_logits = np.exp(shift_logits)
     probs = exp_logits / np.sum(exp_logits)
 
-    # Rank predictions in descending order of probability
+    crop_key = crop.lower().strip() if crop else "all"
+    if crop_key in CROP_FAMILY_MAP:
+        target_labels = set(CROP_FAMILY_MAP[crop_key])
+        target_indices = [i for i, label in enumerate(LABELS) if label in target_labels]
+        prob_sum = float(np.sum(probs[target_indices]))
+        if prob_sum > 0:
+            cond_probs = {i: float(probs[i]) / prob_sum for i in target_indices}
+            sorted_indices = sorted(target_indices, key=lambda i: cond_probs[i], reverse=True)[:top_k]
+            results = []
+            for idx in sorted_indices:
+                results.append({
+                    "label": LABELS[idx],
+                    "prob": round(cond_probs[idx], 4),
+                })
+            return results
+
+    # Global top-k ranking over all 27 classes
     top_indices = np.argsort(probs)[::-1][:top_k]
 
     results = []

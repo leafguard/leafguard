@@ -292,6 +292,7 @@
     const formData = new FormData();
     formData.append("file", currentFileBlob, "leaf.jpg");
     formData.append("lang", currentLang);
+    formData.append("crop", cropSelect.value);
 
     try {
       const res = await fetch("/predict", { method: "POST", body: formData });
@@ -302,28 +303,6 @@
         else if (res.status === 400) showError(data.detail || STRINGS[currentLang].errSmall);
         else showError(data.detail || STRINGS[currentLang].errInvalid);
         return;
-      }
-
-      // Crop mapping for targeted filtering
-      const CROP_CLASS_MAP = {
-        cotton: ["cotton"],
-        turmeric: ["turmeric"],
-        soybean: ["soybean", "soyabean"],
-        tomato: ["bacterial_spot", "early_blight", "late_blight", "septoria_leaf_spot", "yellow_leaf_curl_virus", "healthy", "leaf_mold"],
-      };
-
-      // Apply crop filter if selected
-      const selectedCrop = cropSelect.value;
-      if (selectedCrop !== "all" && data.top && data.top.length > 0 && CROP_CLASS_MAP[selectedCrop]) {
-        const keywords = CROP_CLASS_MAP[selectedCrop];
-        const isMatch = (item) => keywords.some(k => item.label.toLowerCase().includes(k));
-        
-        const matching = data.top.filter(isMatch);
-        const nonMatching = data.top.filter(item => !isMatch(item));
-        
-        if (matching.length > 0) {
-          data.top = matching.concat(nonMatching);
-        }
       }
 
       lastPredictionData = data;
