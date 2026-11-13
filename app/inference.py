@@ -4,7 +4,7 @@ Preprocesses input images, runs MobileNetV3 ONNX graph, and calculates blur metr
 No PyTorch dependency at serving time for fast startup and low memory footprint.
 """
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 import json
 import numpy as np
 from PIL import Image
