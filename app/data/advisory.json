@@ -1,0 +1,1357 @@
+{
+  "_disclaimer": {
+    "en": "Indicative result only. Confirm with your local KVK before spraying.",
+    "hi": "<NEEDS TRANSLATION>",
+    "mr": "<NEEDS TRANSLATION>"
+  },
+  "Apple_Scab": {
+    "name": {
+      "en": "Apple Scab",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Bacterial_Spot": {
+    "name": {
+      "en": "Bacterial Spot",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Black_Rot": {
+    "name": {
+      "en": "Black Rot",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Cedar_Apple_Rust": {
+    "name": {
+      "en": "Cedar Apple Rust",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Cercospora_Leaf_Spot": {
+    "name": {
+      "en": "Cercospora Leaf Spot",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Common_Rust_": {
+    "name": {
+      "en": "Common Rust ",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Cotton___bacterial_blight": {
+    "name": {
+      "en": "Cotton - bacterial blight",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Cotton___curl_virus": {
+    "name": {
+      "en": "Cotton - curl virus",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Cotton___fussarium_wilt": {
+    "name": {
+      "en": "Cotton - fussarium wilt",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Cotton___healthy": {
+    "name": {
+      "en": "Cotton - healthy",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Early_Blight": {
+    "name": {
+      "en": "Early Blight",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Esca_(Black_Measles)": {
+    "name": {
+      "en": "Esca (Black Measles)",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Healthy": {
+    "name": {
+      "en": "Healthy",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Late_Blight": {
+    "name": {
+      "en": "Late Blight",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Leaf_Blight": {
+    "name": {
+      "en": "Leaf Blight",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Leaf_Scorch": {
+    "name": {
+      "en": "Leaf Scorch",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Northern_Leaf_Blight": {
+    "name": {
+      "en": "Northern Leaf Blight",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Powdery_Mildew": {
+    "name": {
+      "en": "Powdery Mildew",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Septoria_Leaf_Spot": {
+    "name": {
+      "en": "Septoria Leaf Spot",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Soybean___Healthy_Soyabean": {
+    "name": {
+      "en": "Soybean - Healthy Soyabean",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Soybean___Soyabean_Frog_Leaf_Eye": {
+    "name": {
+      "en": "Soybean - Soyabean Frog Leaf Eye",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Soybean___Soyabean_Mosaic": {
+    "name": {
+      "en": "Soybean - Soyabean Mosaic",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Soybean___Soyabean_Spectoria_Brown_Spot": {
+    "name": {
+      "en": "Soybean - Soyabean Spectoria Brown Spot",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Turmeric___Dry_Leaf": {
+    "name": {
+      "en": "Turmeric - Dry Leaf",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Turmeric___Healthy_Leaf": {
+    "name": {
+      "en": "Turmeric - Healthy Leaf",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Turmeric___Leaf_Blotch": {
+    "name": {
+      "en": "Turmeric - Leaf Blotch",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  },
+  "Yellow_Leaf_Curl_Virus": {
+    "name": {
+      "en": "Yellow Leaf Curl Virus",
+      "hi": "<NEEDS TRANSLATION>",
+      "mr": "<NEEDS TRANSLATION>"
+    },
+    "symptoms": {
+      "en": [
+        "<NEEDS SYMPTOMS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "actions": {
+      "en": [
+        "<NEEDS ACTIONS>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "prevention": {
+      "en": [
+        "<NEEDS PREVENTION>"
+      ],
+      "hi": [
+        "<NEEDS TRANSLATION>"
+      ],
+      "mr": [
+        "<NEEDS TRANSLATION>"
+      ]
+    },
+    "source": {
+      "name": "<NEEDS SOURCE NAME>",
+      "url": "<NEEDS SOURCE URL>",
+      "retrieved": "2026-11-13"
+    },
+    "reviewed": {
+      "en": false,
+      "hi": false,
+      "mr": false
+    }
+  }
+}

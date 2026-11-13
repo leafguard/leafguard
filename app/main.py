@@ -7,6 +7,7 @@ from PIL import Image, ImageOps, UnidentifiedImageError
 
 from app.version import get_version
 from app.inference import predict as model_predict, blur_score, is_dummy
+from app.advisory import get as get_advisory, display_name as get_display_name
 
 # Threshold constants tuned on field photos (tune in M5)
 CONF_OK = 0.70
@@ -17,14 +18,6 @@ BLUR_MIN = 40.0
 Image.MAX_IMAGE_PIXELS = 50_000_000
 
 app = FastAPI(title="LeafGuard", description="Crop disease identification for smallholder farmers")
-
-
-def format_display_name(label: str) -> str:
-    """Format machine label into a farmer-readable crop - disease string."""
-    if "___" in label:
-        crop, disease = label.split("___", 1)
-        return f"{crop.replace('_', ' ')} - {disease.replace('_', ' ')}"
-    return label.replace("_", " ")
 
 
 @app.get("/health")
@@ -81,7 +74,7 @@ async def predict(file: UploadFile = File(...), lang: str = Form("en")) -> dict:
     # 6. Execute ONNX model inference
     top_preds = model_predict(img, top_k=3)
     for item in top_preds:
-        item["name"] = format_display_name(item["label"])
+        item["name"] = get_display_name(item["label"], lang=lang)
 
     top_prob = top_preds[0]["prob"] if top_preds else 0.0
 
@@ -99,22 +92,10 @@ async def predict(file: UploadFile = File(...), lang: str = Form("en")) -> dict:
         "top": top_preds,
     }
 
-    # Advice contract: omitted when status is unrecognised; placeholder attached for M2 until M3
+    # Advice contract: omitted when status is unrecognised; attached via advisory.get()
     if status != "unrecognised":
-        top_name = top_preds[0]["name"]
-        response["advice"] = {
-            "title": top_name,
-            "symptoms": ["Visible foliar lesions or discoloration characteristic of this disease."],
-            "actions": ["Isolate affected plant tissue and avoid overhead watering to prevent spore dispersal."],
-            "prevention": ["Ensure adequate spacing between plants for airflow and monitor field regularly."],
-            "source": {
-                "name": "ICAR Extension Advisory Bulletin",
-                "url": "https://icar.org.in",
-                "retrieved": "2026-11-13",
-            },
-            "disclaimer": "Indicative result only. Confirm with your local KVK or agricultural officer before spraying.",
-            "reviewed": {"en": False, "hi": False, "mr": False},
-        }
+        top_label = top_preds[0]["label"]
+        response["advice"] = get_advisory(top_label, lang=lang)
 
     return response
 
