@@ -1,6 +1,29 @@
 [
-  "Tomato___Early_blight",
-  "Tomato___Late_blight",
-  "Tomato___healthy"
+  "Apple_Scab",
+  "Bacterial_Spot",
+  "Black_Rot",
+  "Cedar_Apple_Rust",
+  "Cercospora_Leaf_Spot",
+  "Common_Rust_",
+  "Cotton___bacterial_blight",
+  "Cotton___curl_virus",
+  "Cotton___fussarium_wilt",
+  "Cotton___healthy",
+  "Early_Blight",
+  "Esca_(Black_Measles)",
+  "Healthy",
+  "Late_Blight",
+  "Leaf_Blight",
+  "Leaf_Scorch",
+  "Northern_Leaf_Blight",
+  "Powdery_Mildew",
+  "Septoria_Leaf_Spot",
+  "Soybean___Healthy_Soyabean",
+  "Soybean___Soyabean_Frog_Leaf_Eye",
+  "Soybean___Soyabean_Mosaic",
+  "Soybean___Soyabean_Spectoria_Brown_Spot",
+  "Turmeric___Dry_Leaf",
+  "Turmeric___Healthy_Leaf",
+  "Turmeric___Leaf_Blotch",
+  "Yellow_Leaf_Curl_Virus"
 ]
-

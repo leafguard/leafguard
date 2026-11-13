@@ -1,0 +1,42 @@
+{
+  "model_architecture": "MobileNetV3-Large",
+  "opset": 17,
+  "num_classes": 27,
+  "model_size_mb": 16.43,
+  "parity_max_abs_diff": 4.5299530029296875e-06,
+  "validation": {
+    "accuracy": 0.9884953072963972,
+    "top3_accuracy": 1.0,
+    "macro_f1": 0.966903794359059,
+    "per_class": {
+      "Apple_Scab": 1.0,
+      "Bacterial_Spot": 1.0,
+      "Black_Rot": 0.9974874371859297,
+      "Cedar_Apple_Rust": 1.0,
+      "Cercospora_Leaf_Spot": 0.9817629179331308,
+      "Common_Rust_": 0.9973821989528796,
+      "Cotton___bacterial_blight": 1.0,
+      "Cotton___curl_virus": 0.9761904761904762,
+      "Cotton___fussarium_wilt": 0.9761904761904762,
+      "Cotton___healthy": 0.9883720930232558,
+      "Early_Blight": 1.0,
+      "Esca_(Black_Measles)": 1.0,
+      "Healthy": 1.0,
+      "Late_Blight": 1.0,
+      "Leaf_Blight": 1.0,
+      "Leaf_Scorch": 1.0,
+      "Northern_Leaf_Blight": 0.9240837696335078,
+      "Powdery_Mildew": 1.0,
+      "Septoria_Leaf_Spot": 0.9914285714285714,
+      "Soybean___Healthy_Soyabean": 1.0,
+      "Soybean___Soyabean_Frog_Leaf_Eye": 0.7941176470588235,
+      "Soybean___Soyabean_Mosaic": 0.725,
+      "Soybean___Soyabean_Spectoria_Brown_Spot": 0.7592592592592593,
+      "Turmeric___Dry_Leaf": 1.0,
+      "Turmeric___Healthy_Leaf": 1.0,
+      "Turmeric___Leaf_Blotch": 1.0,
+      "Yellow_Leaf_Curl_Virus": 1.0
+    }
+  },
+  "field": "<NOT MEASURED>"
+}

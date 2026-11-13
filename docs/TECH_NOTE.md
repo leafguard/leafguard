@@ -40,11 +40,11 @@ The model is trained on a combination of open agricultural research datasets:
 
 | Metric | Laboratory Validation (Split) | Field Evaluation Set | Measurement Method |
 |---|---|---|---|
-| **Top-1 Accuracy** | `<NOT MEASURED>` | `<NOT MEASURED>` | Multiclass accuracy |
-| **Top-3 Accuracy** | `<NOT MEASURED>` | `<NOT MEASURED>` | Target in top-3 highest logits |
-| **Macro F1 Score** | `<NOT MEASURED>` | `<NOT MEASURED>` | Unweighted average F1 across classes |
-| **Model Size** | `<NOT MEASURED>` | `<NOT MEASURED>` | ONNX file size on disk (target < 25 MB) |
-| **Parity Diff (PyTorch vs ONNX)** | `<NOT MEASURED>` | N/A | $\max |\text{PyTorch} - \text{ONNX}|$ on identical input (must be $< 10^{-3}$) |
+| **Top-1 Accuracy** | 98.85% | `<NOT MEASURED>` | Multiclass accuracy |
+| **Top-3 Accuracy** | 100.00% | `<NOT MEASURED>` | Target in top-3 highest logits |
+| **Macro F1 Score** | 0.9669 | `<NOT MEASURED>` | Unweighted average F1 across classes |
+| **Model Size** | 16.43 MB | `<NOT MEASURED>` | ONNX file size on disk (target < 25 MB) |
+| **Parity Diff (PyTorch vs ONNX)** | 4.53e-06 | N/A | $\max |\text{PyTorch} - \text{ONNX}|$ on identical input (must be $< 10^{-3}$) |
 
 ---
 
