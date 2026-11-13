@@ -2,72 +2,264 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LeafGuard - Crop Disease Scanner</title>
-  <style>
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      max-width: 600px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      background: #fbfdf9;
-      color: #1b2e1b;
-    }
-    h1 { color: #1e6b2c; margin-bottom: 0.5rem; }
-    p { color: #4a5d4e; margin-top: 0; }
-    .card {
-      background: white;
-      border: 1px solid #dbe6dc;
-      border-radius: 12px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
-    }
-    input[type="file"] {
-      display: block;
-      margin: 1rem 0;
-      padding: 0.5rem;
-      border: 1px dashed #7ea383;
-      border-radius: 8px;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    button {
-      background: #257d36;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      padding: 0.75rem 1.5rem;
-      font-size: 1rem;
-      font-weight: 600;
-      cursor: pointer;
-      min-height: 44px;
-      width: 100%;
-    }
-    button:hover { background: #1c642a; }
-    button:disabled { background: #9bb7a0; cursor: not-allowed; }
-    pre {
-      background: #f3f7f4;
-      padding: 1rem;
-      border-radius: 8px;
-      overflow-x: auto;
-      font-size: 0.85rem;
-      margin-top: 1rem;
-      border: 1px solid #e1ebe2;
-    }
-    .status { margin-top: 1rem; font-weight: 500; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>LeafGuard — Crop Disease Scanner</title>
+  <meta name="description" content="Instant crop leaf disease identification and ICAR management advisory for smallholder farmers.">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#1e6b2c">
+  <!-- Google Fonts: Noto Sans Devanagari for Hindi/Marathi support -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;700&family=Noto+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <h1>🌿 LeafGuard</h1>
-  <p>Scan a crop leaf to identify diseases with sourced advice.</p>
-  <div class="card">
-    <label for="leafInput">Select or photograph a leaf:</label>
-    <input type="file" id="leafInput" accept="image/*" capture="environment">
-    <button id="scanBtn" type="button">Scan Leaf</button>
-    <div id="statusMsg" class="status"></div>
-    <pre id="output">Results will appear here...</pre>
-  </div>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-brand">
+      <span class="brand-logo" aria-hidden="true">🌿</span>
+      <h1 class="brand-title">LeafGuard</h1>
+    </div>
+    <!-- Language Selector -->
+    <div class="lang-switch" role="group" aria-label="Language selection">
+      <button type="button" class="lang-btn active" data-lang="en">EN</button>
+      <button type="button" class="lang-btn" data-lang="hi">हिंदी</button>
+      <button type="button" class="lang-btn" data-lang="mr">मराठी</button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-container">
+
+    <!-- Screen 1: Home / Scanner -->
+    <section id="screen-home" class="screen active" aria-labelledby="home-heading">
+      <div class="card intro-card">
+        <h2 id="home-heading" class="tagline" data-i18n="tagline">Scan a crop leaf to identify diseases with official ICAR advice.</h2>
+      </div>
+
+      <!-- Crop Filter Selector (Optional) -->
+      <div class="card crop-select-card">
+        <label for="cropSelect" class="form-label" data-i18n="cropLabel">Filter by Crop (Optional):</label>
+        <select id="cropSelect" class="form-select">
+          <option value="all" data-i18n="cropAll">🌱 Auto-Detect (All Crops)</option>
+          <option value="cotton" data-i18n="cropCotton">☁️ Cotton (कापूस / कपास)</option>
+          <option value="turmeric" data-i18n="cropTurmeric">🟡 Turmeric (हळद / हल्दी)</option>
+          <option value="soybean" data-i18n="cropSoybean">🫘 Soybean (सोयाबीन)</option>
+          <option value="tomato" data-i18n="cropTomato">🍅 Tomato & Vegetables</option>
+        </select>
+      </div>
+
+      <!-- Upload / Camera Area -->
+      <div class="card upload-card">
+        <input type="file" id="cameraInput" accept="image/*" capture="environment" class="visually-hidden">
+        <input type="file" id="galleryInput" accept="image/*" class="visually-hidden">
+
+        <div class="action-buttons">
+          <button type="button" id="cameraBtn" class="btn btn-primary btn-large">
+            <span class="btn-icon" aria-hidden="true">📷</span>
+            <span data-i18n="takePhoto">Take Photo</span>
+          </button>
+          <button type="button" id="galleryBtn" class="btn btn-secondary">
+            <span class="btn-icon" aria-hidden="true">🖼️</span>
+            <span data-i18n="chooseGallery">Choose from Gallery</span>
+          </button>
+        </div>
+
+        <div id="imagePreviewContainer" class="preview-container hidden">
+          <img id="imagePreview" src="" alt="Selected leaf preview" class="preview-img">
+          <button type="button" id="scanBtn" class="btn btn-primary btn-large">
+            <span class="btn-icon" aria-hidden="true">🔍</span>
+            <span data-i18n="scanNow">Diagnose Leaf</span>
+          </button>
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loadingIndicator" class="loading-box hidden" role="status" aria-live="polite">
+          <div class="spinner"></div>
+          <p data-i18n="processing">Analyzing leaf patterns on CPU...</p>
+        </div>
+
+        <!-- Error Message Banner -->
+        <div id="errorBanner" class="alert-box alert-error hidden" role="alert"></div>
+      </div>
+
+      <!-- Tips Card -->
+      <div class="card tips-card">
+        <h3 class="card-title" data-i18n="tipsTitle">💡 Tips for Best Accuracy:</h3>
+        <ul class="tips-list">
+          <li data-i18n="tip1">Take photo in clear daylight (avoid flash glare).</li>
+          <li data-i18n="tip2">Hold phone steady and close to the infected leaf area.</li>
+          <li data-i18n="tip3">Avoid shadows, fingers, and background clutter.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Screen 2: Diagnostic Results -->
+    <section id="screen-result" class="screen hidden" aria-labelledby="result-heading">
+      <div class="card result-card">
+        <!-- Blur Alert Banner -->
+        <div id="blurWarning" class="alert-box alert-warning hidden" role="alert">
+          <span aria-hidden="true">⚠️</span>
+          <span data-i18n="blurNotice">Photo appears blurry. If result seems incorrect, retake in better light.</span>
+        </div>
+
+        <!-- Header: Status Badge & Disease Title -->
+        <div class="result-header">
+          <div class="result-photo-wrap">
+            <img id="resultPhoto" src="" alt="Diagnosed leaf" class="result-photo">
+          </div>
+          <div class="result-title-group">
+            <span id="statusBadge" class="status-badge status-confident">Confident</span>
+            <h2 id="diseaseTitle" class="disease-title">Loading...</h2>
+          </div>
+        </div>
+
+        <!-- Confidence Meter -->
+        <div class="confidence-wrap">
+          <div class="confidence-labels">
+            <span data-i18n="confidence">Confidence:</span>
+            <span id="confidenceValue" class="confidence-value">0%</span>
+          </div>
+          <div class="confidence-bar-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+            <div id="confidenceBar" class="confidence-bar-fill" style="width: 0%;"></div>
+          </div>
+        </div>
+
+        <!-- Voice Read Aloud -->
+        <div class="voice-action-wrap">
+          <button type="button" id="voiceBtn" class="btn btn-voice">
+            <span class="btn-icon" aria-hidden="true">🔊</span>
+            <span data-i18n="listenAdvice">Listen Advisory</span>
+          </button>
+        </div>
+
+        <!-- Differential Top-3 Predictions -->
+        <div class="top3-section">
+          <h4 class="top3-title" data-i18n="top3Title">Top Differential Possibilities:</h4>
+          <ul id="top3List" class="top3-list"></ul>
+        </div>
+
+        <!-- Unrecognised Guidance Card -->
+        <div id="unrecognisedCard" class="unrecognised-box hidden">
+          <p class="unrecognised-text" data-i18n="unrecognisedMsg">
+            We could not identify this disease with certainty. Please photograph a close-up of a supported crop leaf (Cotton, Soybean, Turmeric, Tomato) in clear daylight.
+          </p>
+        </div>
+
+        <!-- Sourced ICAR Advisory Accordion -->
+        <div id="advisorySection" class="advisory-section">
+          <!-- Symptoms -->
+          <details class="advisory-item" open>
+            <summary class="advisory-summary">
+              <span class="advisory-icon" aria-hidden="true">🔍</span>
+              <span data-i18n="symptoms">Symptoms to verify</span>
+            </summary>
+            <div id="symptomsContent" class="advisory-content"></div>
+          </details>
+
+          <!-- What to do now (Actions) -->
+          <details class="advisory-item" open>
+            <summary class="advisory-summary">
+              <span class="advisory-icon" aria-hidden="true">⚡</span>
+              <span data-i18n="actions">What to do now (Immediate Action)</span>
+            </summary>
+            <div id="actionsContent" class="advisory-content"></div>
+          </details>
+
+          <!-- Prevention -->
+          <details class="advisory-item">
+            <summary class="advisory-summary">
+              <span class="advisory-icon" aria-hidden="true">🛡️</span>
+              <span data-i18n="prevention">Prevention for next season</span>
+            </summary>
+            <div id="preventionContent" class="advisory-content"></div>
+          </details>
+
+          <!-- Source & Legal Disclaimer -->
+          <div class="source-card">
+            <p class="source-info">
+              <span data-i18n="sourceLabel">Source:</span>
+              <a id="sourceLink" href="https://icar.org.in" target="_blank" rel="noopener">ICAR Extension</a>
+            </p>
+            <p id="disclaimerText" class="disclaimer-text"></p>
+          </div>
+        </div>
+
+        <!-- Retake Button -->
+        <div class="result-actions">
+          <button type="button" id="scanAnotherBtn" class="btn btn-primary btn-large">
+            <span class="btn-icon" aria-hidden="true">🔄</span>
+            <span data-i18n="scanAnother">Scan Another Leaf</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Screen 3: History -->
+    <section id="screen-history" class="screen hidden" aria-labelledby="history-heading">
+      <div class="card history-card">
+        <div class="card-header-flex">
+          <h2 id="history-heading" class="card-title" data-i18n="historyTitle">Recent Scans</h2>
+          <button type="button" id="clearHistoryBtn" class="btn btn-text" data-i18n="clearHistory">Clear</button>
+        </div>
+        <p class="history-privacy-note" data-i18n="historyNote">
+          Stored only on your phone's browser. Photos are not saved on the server.
+        </p>
+        <ul id="historyList" class="history-list"></ul>
+        <p id="emptyHistoryMsg" class="empty-state hidden" data-i18n="emptyHistory">No previous scans found.</p>
+      </div>
+    </section>
+
+    <!-- Screen 4: About -->
+    <section id="screen-about" class="screen hidden" aria-labelledby="about-heading">
+      <div class="card about-card">
+        <h2 id="about-heading" class="card-title" data-i18n="aboutTitle">About LeafGuard</h2>
+        <p data-i18n="aboutDesc">
+          LeafGuard is an edge-optimized agricultural diagnostic assistant built for smallholder farmers. It runs high-speed MobileNetV3 inference directly on low-cost CPU instances without cloud GPU dependencies.
+        </p>
+
+        <h3 class="section-subtitle" data-i18n="supportedCrops">Supported Crops (27 Diseases):</h3>
+        <ul class="crops-list">
+          <li><strong>Cotton (कापूस):</strong> Bacterial Blight, Leaf Curl Virus, Fusarium Wilt, Healthy</li>
+          <li><strong>Turmeric (हळद):</strong> Leaf Spot, Leaf Blotch, Dry Leaf, Healthy</li>
+          <li><strong>Soybean (सोयाबीन):</strong> Frogeye Leaf Spot, Mosaic, Brown Spot, Healthy</li>
+          <li><strong>Vegetables & Fruits:</strong> Tomato, Potato, Apple, Grape, Pepper, Corn</li>
+        </ul>
+
+        <h3 class="section-subtitle" data-i18n="modelPerformance">Empirical Model Performance:</h3>
+        <table class="metrics-table">
+          <tr><th>Metric</th><th>Measured Value</th></tr>
+          <tr><td>Laboratory Top-1 Accuracy</td><td><strong>98.85%</strong></td></tr>
+          <tr><td>Top-3 Differential Accuracy</td><td><strong>100.00%</strong></td></tr>
+          <tr><td>Macro F1 Score</td><td>0.9669</td></tr>
+          <tr><td>Serving CPU Latency</td><td>~18 ms</td></tr>
+        </table>
+
+        <h3 class="section-subtitle" data-i18n="safetyPolicy">Safety & Advisory Policy:</h3>
+        <p class="small-text" data-i18n="safetyText">
+          LeafGuard never auto-generates or guesses chemical pesticide dosages. All management practices are compiled from Indian Council of Agricultural Research (ICAR) and Krishi Vigyan Kendra (KVK) bulletins. Always confirm with an agronomist before spraying.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="bottom-nav" aria-label="Main Navigation">
+    <button type="button" class="nav-item active" data-target="screen-home">
+      <span class="nav-icon" aria-hidden="true">📷</span>
+      <span class="nav-label" data-i18n="navScan">Scan</span>
+    </button>
+    <button type="button" class="nav-item" data-target="screen-history">
+      <span class="nav-icon" aria-hidden="true">📜</span>
+      <span class="nav-label" data-i18n="navHistory">History</span>
+    </button>
+    <button type="button" class="nav-item" data-target="screen-about">
+      <span class="nav-icon" aria-hidden="true">ℹ️</span>
+      <span class="nav-label" data-i18n="navAbout">About</span>
+    </button>
+  </nav>
+
   <script src="/app.js"></script>
 </body>
 </html>
-

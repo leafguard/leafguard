@@ -116,15 +116,15 @@ Goal: the mechanism is built by the agent; the CONTENT is written by humans from
 ## M4: Frontend (Wed 11 Nov) -> Deploy D3
 Goal: a farmer-friendly phone UI. Follow `.agents/rules/20-frontend.md`.
 
-- [ ] **T4.1 (MUST) Layout and styling.** `static/index.html`, `styles.css`: screens Home, Result, History, About (one page, sections shown/hidden by JS); large buttons; high contrast; 360 px wide friendly; Noto Sans Devanagari from Google Fonts with fallbacks. Commit: `feat: ui layout`.
-- [ ] **T4.2 (MUST) Strings table.** One `STRINGS = {en:{...}, hi:{...}, mr:{...}}` object in `app.js` with every UI text key. Hindi and Marathi values start as `"<NEEDS TRANSLATION>"` shown in dev; humans fill them (H3). Language toggle persists in localStorage. Commit: `feat: i18n strings and toggle`.
-- [ ] **T4.3 (MUST) Upload flow.** Camera/gallery input, canvas shrink (640 px, JPEG 0.85, EXIF-aware), `fetch` to `/predict` with `lang`, spinner, error messages mapped to friendly text for 400/413/network failure. Commit: `feat: upload flow`.
-- [ ] **T4.4 (MUST) Result rendering.** Photo preview, disease name, confidence bar, status badge with TEXT (confident / uncertain / unrecognised), top-3 list, expandable symptoms / what to do now / prevention, source link, disclaimer, "translation under review" note when `reviewed` is false for the chosen language, Scan another. Unrecognised state shows retake guidance and no advice. Commit: `feat: result screen`.
-- [ ] **T4.5 (SHOULD) Photo tips and blur warning.** Show three tips on Home; show a warning banner when `blurry` is true. Commit: `feat: photo tips`.
-- [ ] **T4.6 (SHOULD) Voice read-aloud.** `speechSynthesis` with en-IN/hi-IN/mr-IN; check `getVoices()`; hide the button or show a tip if no matching voice; cancel on new speech. Commit: `feat: read aloud`.
-- [ ] **T4.7 (SHOULD) History.** Last 10 scans (label name, status, date) in localStorage with try/catch and a Clear button; text says nothing is stored on the server. Commit: `feat: local history`.
-- [ ] **T4.8 (SHOULD) About page.** How it works, dataset credits, supported crops list (generated from `labels.json` via a `/labels` endpoint or an inline list the human maintains), accuracy table with `<NOT MEASURED>` until the human fills it, known limits. Commit: `feat: about page`.
-- [ ] **T4.9 (COULD) PWA-lite.** `manifest.json` and icons only (no service worker unless asked). Commit: `feat: web manifest`.
+- [x] **T4.1 (MUST) Layout and styling.** `static/index.html`, `styles.css`: screens Home, Result, History, About (one page, sections shown/hidden by JS); large buttons; high contrast; 360 px wide friendly; Noto Sans Devanagari from Google Fonts with fallbacks. Commit: `feat: ui layout`.
+- [x] **T4.2 (MUST) Strings table.** One `STRINGS = {en:{...}, hi:{...}, mr:{...}}` object in `app.js` with every UI text key. Hindi and Marathi values start as `"<NEEDS TRANSLATION>"` shown in dev; humans fill them (H3). Language toggle persists in localStorage. Commit: `feat: i18n strings and toggle`.
+- [x] **T4.3 (MUST) Upload flow.** Camera/gallery input, canvas shrink (640 px, JPEG 0.85, EXIF-aware), `fetch` to `/predict` with `lang`, spinner, error messages mapped to friendly text for 400/413/network failure. Commit: `feat: upload flow`.
+- [x] **T4.4 (MUST) Result rendering.** Photo preview, disease name, confidence bar, status badge with TEXT (confident / uncertain / unrecognised), top-3 list, expandable symptoms / what to do now / prevention, source link, disclaimer, "translation under review" note when `reviewed` is false for the chosen language, Scan another. Unrecognised state shows retake guidance and no advice. Commit: `feat: result screen`.
+- [x] **T4.5 (SHOULD) Photo tips and blur warning.** Show three tips on Home; show a warning banner when `blurry` is true. Commit: `feat: photo tips`.
+- [x] **T4.6 (SHOULD) Voice read-aloud.** `speechSynthesis` with en-IN/hi-IN/mr-IN; check `getVoices()`; hide the button or show a tip if no matching voice; cancel on new speech. Commit: `feat: read aloud`.
+- [x] **T4.7 (SHOULD) History.** Last 10 scans (label name, status, date) in localStorage with try/catch and a Clear button; text says nothing is stored on the server. Commit: `feat: local history`.
+- [x] **T4.8 (SHOULD) About page.** How it works, dataset credits, supported crops list (generated from `labels.json` via a `/labels` endpoint or an inline list the human maintains), accuracy table with `<NOT MEASURED>` until the human fills it, known limits. Commit: `feat: about page`.
+- [x] **T4.9 (COULD) PWA-lite.** `manifest.json` and icons only (no service worker unless asked). Commit: `feat: web manifest`.
 - Agent: `/pre-deploy` for **D3** (real model required). **HUMAN: phone test on mobile data, deploy D3**, screenshots into `docs/evidence/` (strip metadata), tag `v0.8-ui`.
 
 ## M5: Field test, tuning, FEATURE FREEZE (Thu 12 Nov) -> Deploy D4

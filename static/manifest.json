@@ -1,0 +1,16 @@
+{
+  "name": "LeafGuard Crop Disease Scanner",
+  "short_name": "LeafGuard",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f8f5",
+  "theme_color": "#1e6b2c",
+  "description": "Instant crop leaf disease identification and ICAR management advisory for smallholder farmers.",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}
