@@ -152,7 +152,16 @@ def predict(
         target_labels = set(CROP_FAMILY_MAP[crop_key])
         target_indices = [i for i, label in enumerate(LABELS) if label in target_labels]
         prob_sum = float(np.sum(probs[target_indices]))
-        if prob_sum > 0:
+        global_top_idx = int(np.argmax(probs))
+
+        # Crop Mismatch Protection:
+        # If a farmer selects Tomato by mistake but photographs Soybean, the total
+        # evidence for the selected crop will be very low (< 15%) while another class dominates.
+        # Do not artificially inflate to 50-70%; return uninflated raw probabilities so
+        # confidence stays low (< 20%) and status is correctly marked 'unrecognised'.
+        is_mismatch = (prob_sum < 0.15) and (global_top_idx not in target_indices)
+
+        if prob_sum > 0 and not is_mismatch:
             cond_probs = {i: float(probs[i]) / prob_sum for i in target_indices}
             sorted_indices = sorted(target_indices, key=lambda i: cond_probs[i], reverse=True)[:top_k]
             results = []
@@ -160,6 +169,15 @@ def predict(
                 results.append({
                     "label": LABELS[idx],
                     "prob": round(cond_probs[idx], 4),
+                })
+            return results
+        elif is_mismatch:
+            sorted_indices = sorted(target_indices, key=lambda i: probs[i], reverse=True)[:top_k]
+            results = []
+            for idx in sorted_indices:
+                results.append({
+                    "label": LABELS[idx],
+                    "prob": round(float(probs[idx]), 4),
                 })
             return results
 

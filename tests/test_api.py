@@ -45,21 +45,49 @@ def test_predict_endpoint_valid_image():
     assert "advice" in data
 
 
-def test_predict_endpoint_with_crop_filter():
-    img_bytes = make_dummy_jpeg()
+def test_predict_endpoint_with_matching_crop_filter():
+    from pathlib import Path
+    ref_path = Path(__file__).resolve().parent / "sample_images" / "ref_leaf.jpg"
+    if ref_path.exists():
+        with open(ref_path, "rb") as f:
+            img_bytes = f.read()
+    else:
+        img_bytes = make_dummy_jpeg()
+
     response = client.post(
         "/predict",
         files={"file": ("leaf.jpg", img_bytes, "image/jpeg")},
-        data={"lang": "en", "crop": "tomato"},
+        data={"lang": "en", "crop": "turmeric"},
     )
     assert response.status_code == 200
     data = response.json()
     assert data["status"] in ("confident", "uncertain")
     assert len(data["top"]) <= 3
-    # Top prediction must belong to tomato family
-    tomato_labels = {"Bacterial_Spot", "Early_Blight", "Healthy", "Late_Blight", "Septoria_Leaf_Spot", "Yellow_Leaf_Curl_Virus"}
+    turmeric_labels = {"Turmeric___Dry_Leaf", "Turmeric___Healthy_Leaf", "Turmeric___Leaf_Blotch"}
     for pred in data["top"]:
-        assert pred["label"] in tomato_labels
+        assert pred["label"] in turmeric_labels
+
+
+def test_predict_endpoint_rejects_crop_mismatch():
+    from pathlib import Path
+    ref_path = Path(__file__).resolve().parent / "sample_images" / "ref_leaf.jpg"
+    if ref_path.exists():
+        with open(ref_path, "rb") as f:
+            img_bytes = f.read()
+    else:
+        img_bytes = make_dummy_jpeg()
+
+    # Photograph of turmeric leaf sent with crop=soybean (deliberate mismatch)
+    response = client.post(
+        "/predict",
+        files={"file": ("leaf.jpg", img_bytes, "image/jpeg")},
+        data={"lang": "en", "crop": "soybean"},
+    )
+    assert response.status_code == 200
+    data = response.json()
+    # Mismatch must yield unrecognised status and low probability (no artificial boost)
+    assert data["status"] == "unrecognised"
+    assert data["top"][0]["prob"] < 0.20
 
 
 def test_predict_rejects_oversized():
