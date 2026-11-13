@@ -11,6 +11,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
+  <link rel="apple-touch-icon" href="/icon-192.png">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
@@ -19,16 +22,7 @@
   <header class="app-header">
     <div class="header-inner">
       <div class="header-brand">
-        <div class="brand-icon-wrap" aria-hidden="true">
-          <svg class="brand-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/>
-            <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/>
-          </svg>
-        </div>
-        <div class="brand-text">
-          <span class="brand-name">LeafGuard</span>
-          <span class="brand-sub">ICAR Agronomic AI</span>
-        </div>
+        <img src="/logo-cropped.png" alt="LeafGuard AI Plant Health" class="header-brand-logo">
       </div>
 
       <!-- Language Selector -->
@@ -97,9 +91,37 @@
 
         <!-- Selected Preview Area -->
         <div id="imagePreviewContainer" class="preview-container hidden">
-          <div class="preview-frame">
+          <div class="preview-frame" id="previewFrame">
             <img id="imagePreview" src="" alt="Selected leaf preview" class="preview-img">
+            
+            <!-- Lightweight Animated Laser & Reticle Scanner Overlay -->
+            <div id="scannerOverlay" class="scanner-overlay hidden" aria-hidden="true">
+              <div class="scan-corner top-left"></div>
+              <div class="scan-corner top-right"></div>
+              <div class="scan-corner bottom-left"></div>
+              <div class="scan-corner bottom-right"></div>
+              
+              <div class="scan-grid"></div>
+              <div class="scan-laser-beam"></div>
+
+              <div class="scan-reticle-center">
+                <svg class="reticle-svg" viewBox="0 0 48 48" fill="none" stroke="currentColor">
+                  <circle cx="24" cy="24" r="18" stroke-dasharray="4 3" stroke-width="1.5" />
+                  <circle cx="24" cy="24" r="8" stroke-width="1.5" />
+                  <line x1="24" y1="2" x2="24" y2="8" stroke-width="2" />
+                  <line x1="24" y1="40" x2="24" y2="46" stroke-width="2" />
+                  <line x1="2" y1="24" x2="8" y2="24" stroke-width="2" />
+                  <line x1="40" y1="24" x2="46" y2="24" stroke-width="2" />
+                </svg>
+              </div>
+
+              <div class="scan-status-pill">
+                <span class="scan-status-dot"></span>
+                <span id="scanPillText" data-i18n="scanningPill">AI Scanning...</span>
+              </div>
+            </div>
           </div>
+
           <button type="button" id="scanBtn" class="btn btn-primary btn-diagnose">
             <svg class="btn-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><circle cx="12" cy="12" r="3"/>
@@ -108,10 +130,15 @@
           </button>
         </div>
 
-        <!-- Processing Indicator -->
+        <!-- Processing Indicator with dynamic multi-stage scan status -->
         <div id="loadingIndicator" class="loading-box hidden" role="status" aria-live="polite">
-          <div class="spinner-ring"></div>
-          <p class="loading-text" data-i18n="processing">Analyzing leaf patterns on CPU...</p>
+          <div class="scanner-progress-track">
+            <div class="scanner-progress-bar"></div>
+          </div>
+          <div class="loading-status-wrap">
+            <span class="pulse-dot"></span>
+            <p id="loadingStatusText" class="loading-text" data-i18n="processing">Analyzing leaf morphology on CPU...</p>
+          </div>
         </div>
 
         <!-- Error Notification -->
@@ -334,6 +361,9 @@
     <!-- Screen 4: About -->
     <section id="screen-about" class="screen hidden" aria-labelledby="about-heading">
       <div class="card about-card">
+        <div class="about-hero-logo">
+          <img src="/logo-cropped.png" alt="LeafGuard AI Plant Health" class="about-logo-img">
+        </div>
         <h2 id="about-heading" class="card-title" data-i18n="aboutTitle">About LeafGuard</h2>
         <p data-i18n="aboutDesc">
           LeafGuard is an edge-optimized agricultural diagnostic assistant built for smallholder farmers. It runs high-speed MobileNetV3 inference directly on low-cost CPU instances without cloud GPU dependencies.

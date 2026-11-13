@@ -96,6 +96,14 @@ body {
   gap: 0.65rem;
 }
 
+.header-brand-logo {
+  height: 38px;
+  width: auto;
+  max-width: 175px;
+  object-fit: contain;
+  display: block;
+}
+
 .brand-icon-wrap {
   width: 38px;
   height: 38px;
@@ -339,6 +347,7 @@ body {
 }
 
 .preview-frame {
+  position: relative;
   width: 100%;
   max-height: 280px;
   border-radius: var(--radius-md);
@@ -354,12 +363,189 @@ body {
   width: 100%;
   max-height: 280px;
   object-fit: contain;
+  display: block;
+}
+
+/* Scanner Overlay (Active during diagnosis) */
+.scanner-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 10;
+  transition: opacity 0.25s ease;
+}
+
+.scanner-overlay.hidden {
+  display: none !important;
+}
+
+/* 4 Corner Viewfinder Brackets */
+.scan-corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-color: #22c55e;
+  border-style: solid;
+  z-index: 12;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.45);
+}
+
+.scan-corner.top-left {
+  top: 10px;
+  left: 10px;
+  border-width: 2.5px 0 0 2.5px;
+  border-top-left-radius: 4px;
+}
+
+.scan-corner.top-right {
+  top: 10px;
+  right: 10px;
+  border-width: 2.5px 2.5px 0 0;
+  border-top-right-radius: 4px;
+}
+
+.scan-corner.bottom-left {
+  bottom: 10px;
+  left: 10px;
+  border-width: 0 0 2.5px 2.5px;
+  border-bottom-left-radius: 4px;
+}
+
+.scan-corner.bottom-right {
+  bottom: 10px;
+  right: 10px;
+  border-width: 0 2.5px 2.5px 0;
+  border-bottom-right-radius: 4px;
+}
+
+/* Subtle Agronomic Matrix Scanning Grid */
+.scan-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(34, 197, 94, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 197, 94, 0.08) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.7;
+  animation: gridPulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes gridPulse {
+  0% { opacity: 0.35; }
+  100% { opacity: 0.85; }
+}
+
+/* High-tech Scanning Laser Beam */
+.scan-laser-beam {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #22c55e;
+  box-shadow: 0 0 12px 3px rgba(34, 197, 94, 0.85), 0 0 24px 6px rgba(34, 197, 94, 0.45);
+  animation: scanSweep 1.8s ease-in-out infinite;
+  z-index: 11;
+}
+
+.scan-laser-beam::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  right: 0;
+  height: 52px;
+  background: linear-gradient(to top, rgba(34, 197, 94, 0.28), transparent);
+}
+
+.scan-laser-beam::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 12px;
+  background: linear-gradient(to bottom, rgba(34, 197, 94, 0.15), transparent);
+}
+
+@keyframes scanSweep {
+  0% {
+    top: 0%;
+  }
+  50% {
+    top: calc(100% - 3px);
+  }
+  100% {
+    top: 0%;
+  }
+}
+
+/* Central Reticle Target */
+.scan-reticle-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 52px;
+  height: 52px;
+  color: rgba(34, 197, 94, 0.65);
+  pointer-events: none;
+  z-index: 11;
+  animation: reticleSpin 10s linear infinite;
+}
+
+.reticle-svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes reticleSpin {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* Floating Status Pill over image */
+.scan-status-pill {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(14, 43, 31, 0.9);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #a3e635;
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(163, 230, 53, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  z-index: 13;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+}
+
+.scan-status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: dotBlink 1s ease-in-out infinite;
+}
+
+@keyframes dotBlink {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.3; transform: scale(0.85); }
 }
 
 /* Loading Box */
 .loading-box {
   margin-top: 1rem;
-  padding: 1.25rem;
+  padding: 1rem 1.25rem;
   background: var(--bg-subtle);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-md);
@@ -367,6 +553,47 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
+}
+
+.scan-progress-track {
+  width: 100%;
+  height: 5px;
+  background: var(--border-medium);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
+}
+
+.scan-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  background: linear-gradient(90deg, var(--primary) 0%, #22c55e 100%);
+  border-radius: 999px;
+  animation: indeterminateSlide 1.3s ease-in-out infinite;
+}
+
+@keyframes indeterminateSlide {
+  0% { left: -40%; width: 40%; }
+  50% { left: 25%; width: 55%; }
+  100% { left: 100%; width: 40%; }
+}
+
+.loading-status-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+  animation: dotBlink 1.2s ease-in-out infinite;
 }
 
 .spinner-ring {
@@ -1097,6 +1324,22 @@ body {
 
 .nav-item.active {
   color: var(--primary);
+}
+
+.about-hero-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.about-logo-img {
+  height: 48px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
 }
 
 /* Helpers */

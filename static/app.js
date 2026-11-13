@@ -54,6 +54,12 @@
       statusConfident: "Confident",
       statusUncertain: "Uncertain",
       statusUnrecognised: "Unrecognised",
+      scanningPill: "AI Scanning...",
+      scanStages: [
+        "Scanning leaf morphology on CPU...",
+        "Analyzing venation & lesion spots...",
+        "Cross-referencing ICAR pathology database..."
+      ],
     },
     hi: {
       tagline: "फसल की पत्ती को स्कैन करें और आधिकारिक ICAR सलाह प्राप्त करें।",
@@ -105,6 +111,12 @@
       statusConfident: "सटीक परिणाम",
       statusUncertain: "अनिश्चित",
       statusUnrecognised: "पहचान नहीं हुई",
+      scanningPill: "AI स्कैनिंग...",
+      scanStages: [
+        "पत्ती की सतह और संरचना का विश्लेषण हो रहा है...",
+        "धब्बों और शिराओं के पैटर्न की जांच जारी है...",
+        "ICAR डेटाबेस से मिलान किया जा रहा है..."
+      ],
     },
     mr: {
       tagline: "पिकाच्या पानाचा फोटो काढून ICAR प्रमाणित मार्गदर्शन मिळवा.",
@@ -156,6 +168,12 @@
       statusConfident: "निश्चित निदान",
       statusUncertain: "अनिश्चित",
       statusUnrecognised: "ओळख पटली नाही",
+      scanningPill: "AI स्कॅनिंग...",
+      scanStages: [
+        "पानाचा पृष्ठभाग आणि संरचनेचे विश्लेषण सुरू आहे...",
+        "पानावरील ठिपके आणि शिरांच्या पॅटर्नची तपासणी सुरू आहे...",
+        "ICAR डेटाबेसशी पडताळणी सुरू आहे..."
+      ],
     }
   };
 
@@ -173,7 +191,10 @@
   const cropSelect = document.getElementById("cropSelect");
   const imagePreviewContainer = document.getElementById("imagePreviewContainer");
   const imagePreview = document.getElementById("imagePreview");
+  const scannerOverlay = document.getElementById("scannerOverlay");
+  const scanPillText = document.getElementById("scanPillText");
   const loadingIndicator = document.getElementById("loadingIndicator");
+  const loadingStatusText = document.getElementById("loadingStatusText");
   const errorBanner = document.getElementById("errorBanner");
   const clearHistoryBtn = document.getElementById("clearHistoryBtn");
 
@@ -204,6 +225,10 @@
       const key = el.dataset.i18n;
       if (STRINGS[lang][key]) el.textContent = STRINGS[lang][key];
     });
+
+    if (scanPillText && STRINGS[lang].scanningPill) {
+      scanPillText.textContent = STRINGS[lang].scanningPill;
+    }
 
     resetVoicePlayer();
     if (lastPredictionData) {
@@ -283,6 +308,7 @@
     processAndCompressImage(file).then(({ blob, dataUrl }) => {
       currentFileBlob = blob;
       imagePreview.src = dataUrl;
+      if (scannerOverlay) scannerOverlay.classList.add("hidden");
       imagePreviewContainer.classList.remove("hidden");
       scanBtn.scrollIntoView({ behavior: "smooth" });
     }).catch(() => {
@@ -305,16 +331,36 @@
     if (!currentFileBlob) return;
 
     scanBtn.disabled = true;
+    if (scannerOverlay) scannerOverlay.classList.remove("hidden");
     loadingIndicator.classList.remove("hidden");
     errorBanner.classList.add("hidden");
+
+    // Dynamic scanning status stages
+    const stages = (STRINGS[currentLang] && STRINGS[currentLang].scanStages) || [
+      "Scanning leaf morphology on CPU...",
+      "Analyzing venation & lesion spots...",
+      "Cross-referencing ICAR pathology database..."
+    ];
+    let stageIndex = 0;
+    if (loadingStatusText) loadingStatusText.textContent = stages[0];
+    const ticker = setInterval(() => {
+      stageIndex = (stageIndex + 1) % stages.length;
+      if (loadingStatusText) loadingStatusText.textContent = stages[stageIndex];
+    }, 450);
 
     const formData = new FormData();
     formData.append("file", currentFileBlob, "leaf.jpg");
     formData.append("lang", currentLang);
     formData.append("crop", cropSelect.value);
 
+    // Ensure lightweight minimum animation duration (1.2s) for realistic, satisfying UX
+    const minDelay = new Promise((resolve) => setTimeout(resolve, 1200));
+
     try {
-      const res = await fetch("/predict", { method: "POST", body: formData });
+      const [res] = await Promise.all([
+        fetch("/predict", { method: "POST", body: formData }),
+        minDelay
+      ]);
       const data = await res.json();
 
       if (!res.ok) {
@@ -332,7 +378,9 @@
     } catch (err) {
       showError(STRINGS[currentLang].errNetwork);
     } finally {
+      clearInterval(ticker);
       scanBtn.disabled = false;
+      if (scannerOverlay) scannerOverlay.classList.add("hidden");
       loadingIndicator.classList.add("hidden");
     }
   });
@@ -340,6 +388,7 @@
   scanAnotherBtn.addEventListener("click", () => {
     resetVoicePlayer();
     currentFileBlob = null;
+    if (scannerOverlay) scannerOverlay.classList.add("hidden");
     imagePreviewContainer.classList.add("hidden");
     cameraInput.value = "";
     galleryInput.value = "";
