@@ -120,3 +120,4 @@ def predict(img: Image.Image, top_k: int = 3) -> List[Dict[str, Any]]:
         })
 
     return results
+
