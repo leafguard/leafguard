@@ -113,7 +113,7 @@ All figures below reflect **actual measured numbers** evaluated on held-out test
 
 ### 1. Installation
 ```bash
-git clone https://github.com/your-username/leafguard.git
+git clone https://github.com/leafguard/leafguard.git
 cd leafguard
 python -m venv venv
 # On Windows:

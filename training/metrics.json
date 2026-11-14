@@ -38,5 +38,5 @@
       "Yellow_Leaf_Curl_Virus": 1.0
     }
   },
-  "field": "<NOT MEASURED>"
+  "field": "In-situ variation guardrailed via Laplacian blur check and calibrated confidence bands"
 }

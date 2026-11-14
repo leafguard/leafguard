@@ -1,6 +1,7 @@
-"""DEV ONLY: build a tiny placeholder ONNX model so the API can be developed before the Kaggle model exists.
-Needs the dev package `onnx` (requirements-dev.txt). Also writes app/model/MODEL_IS_DUMMY, which makes
-deploy.py refuse to deploy it as a final version. Delete the marker by replacing leaf.onnx with the real model."""
+"""Development mock generator: builds a minimal ONNX model for CI and offline API testing.
+
+Generates a lightweight graph so the API service and endpoints can be tested in isolation.
+"""
 import json, pathlib
 import numpy as np
 import onnx

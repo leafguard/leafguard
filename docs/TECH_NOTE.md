@@ -99,7 +99,7 @@ Analysis of the 79 misclassified samples out of 6,842 validation evaluations rev
 ---
 
 ## 8. Reproducibility Guide
-1. Open [training/train_kaggle.ipynb](file:///c:/Users/hp/Desktop/leafguard/training/train_kaggle.ipynb) in Kaggle Notebooks.
+1. Open [training/train_kaggle.ipynb](../training/train_kaggle.ipynb) in Kaggle Notebooks.
 2. Attach dataset inputs (PlantVillage, Cotton, Turmeric, Soybean).
 3. Set accelerator to GPU (NVIDIA T4 or P100).
 4. Run all cells sequentially. The notebook generates:
