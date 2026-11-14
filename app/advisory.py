@@ -1,7 +1,7 @@
 """Advisory lookup module for LeafGuard.
 
 Retrieves verified ICAR/KVK management advice in English, Hindi, and Marathi.
-Strictly returns stored, reviewed agricultural advice. Never generates advice with an LLM.
+Strictly returns stored, reviewed agricultural advice from ICAR/KVK repositories. Prevents generative hallucination of chemical dosages.
 """
 from pathlib import Path
 from typing import Dict, Any, List

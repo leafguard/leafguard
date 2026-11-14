@@ -1,9 +1,0 @@
-# add these lines to your .gitignore
-.venv/
-__pycache__/
-*.pyc
-.env
-.banned_terms.txt
-app/version.json
-datasets/
-tests/field_photos/

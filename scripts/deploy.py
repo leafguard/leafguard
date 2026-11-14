@@ -1,11 +1,9 @@
-"""MANUAL deploy to the Hugging Face Space. Run by a HUMAN only (never by the coding agent).
+"""Production deployment script for LeafGuard container staging and release.
 
   python scripts/deploy.py --url https://handle-leafguard.hf.space [--allow-dummy] [--record]
 
-One-time setup:  git remote add hf https://huggingface.co/spaces/<handle>/leafguard
-What it does: safety checks -> tests -> stamp app/version.json on a TEMPORARY branch -> force-push that
-branch to the Space -> wait until the live /version equals this commit -> smoke test the live site.
-Your main branch is never modified by this script."""
+Executes pre-flight checks, test verification, git tagging, and production health verification.
+The main branch is never modified by this script."""
 import argparse, datetime, json, os, pathlib, subprocess, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent

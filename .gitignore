@@ -10,3 +10,9 @@ field_results.csv
 leafguard-kit/
 *.pdf
 * (1).*
+.agents/
+AGENTS.md
+GEMINI.md
+START_HERE.md
+gitignore-additions.txt
+
