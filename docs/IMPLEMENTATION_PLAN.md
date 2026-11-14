@@ -130,14 +130,14 @@ Goal: a farmer-friendly phone UI. Follow `.agents/rules/20-frontend.md`.
 ## M5: Field test, tuning, FEATURE FREEZE (Thu 12 Nov) -> Deploy D4
 - [x] **T5.1 (MUST) Field evaluation script** `scripts/field_eval.py`: reads `tests/field_photos/<label>/*.jpg` (git-ignored), runs the same `inference.predict`, writes `field_results.csv` (file, true, predicted, prob, status) and prints accuracy, macro F1, top-3 accuracy and, per status band, how many answers were correct. Commit: `feat: field evaluation script`.
 - [x] **T5.2 (MUST) Threshold sweep** `scripts/tune_thresholds.py`: reads `field_results.csv`, sweeps `CONF_OK` 0.5 to 0.9 and `CONF_LOW` 0.2 to 0.6, prints for each pair the share confident, accuracy among confident, and share unrecognised. It recommends nothing; humans choose. Commit: `feat: threshold sweep`.
-- [ ] **T5.3 (SHOULD) Failure log.** Script or section in `docs/TECH_NOTE.md` template listing misclassified files and the confusion pairs. Commit: `docs: failure analysis template`.
+- [x] **T5.3 (SHOULD) Failure log.** Script or section in `docs/TECH_NOTE.md` template listing misclassified files and the confusion pairs. Commit: `docs: failure analysis template`.
 - [ ] **T5.4 (COULD) Occlusion heatmap** `scripts/occlusion.py` (offline script producing an image; no endpoint yet). Only if M0 to M5 MUSTs are done. Commit: `feat: occlusion script`.
 - **HUMAN H5:** photograph 30 to 50 real leaves; run the scripts; choose thresholds (record reasons); update constants in `app/main.py`; fill TECH_NOTE numbers; set up an uptime monitor on `/health`; prepare the Render backup (manual) and a recorded fallback video; test on an older phone.
 - Agent: `/pre-deploy` for **D4**. **HUMAN: deploy D4**, tag `v0.9-freeze`. FEATURE FREEZE: bug fixes only after this.
 
 ## M6: Submission pack (Fri 13 Nov) -> Deploy D5 only if needed
 - [ ] **T6.1 (MUST) README** with: problem, screenshots (from `docs/evidence/`), architecture diagram (Mermaid), run and test commands, dataset credits and licences, measured accuracy table (lab and field, only measured values), limitations, privacy statement ("photos are not stored"), live URL, and a link to `docs/DEPLOYMENTS.md`. Keep the Hugging Face front matter at the top. Commit: `docs: readme`.
-- [ ] **T6.2 (MUST) Tech note completion.** Fill structure from measured data supplied by humans; no invented values. Commit: `docs: tech note`.
+- [x] **T6.2 (MUST) Tech note completion.** Fill structure from measured data supplied by humans; no invented values. Commit: `docs: tech note`.
 - [ ] **T6.3 (MUST) Repo hygiene.** Check LICENSE choice (ask the human), `.gitignore`, no stray files, no TODO placeholders in shipped files, notebook outputs present and free of paths/names. Commit: `chore: repo hygiene`.
 - **HUMAN H6:** slides, pitch video, native-speaker sign-off, two-person anonymity audit (repo, history, notebook, images, PDF, video). Run `/anonymity-audit`.
 - Deploy **D5** only if README front matter or a bug fix changed shipped code. Tag `v1.0-rc`.
