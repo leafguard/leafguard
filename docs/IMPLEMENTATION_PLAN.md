@@ -143,7 +143,7 @@ Goal: a farmer-friendly phone UI. Follow `.agents/rules/20-frontend.md`.
 - Deploy **D5** only if README front matter or a bug fix changed shipped code. Tag `v1.0-rc`.
 
 ## M7: Final release (Sat 14 Nov, deploy before 12:00) -> Deploy D6
-- [ ] **T7.1 (MUST) Final pre-deploy report** with `/pre-deploy` for D6 and a full end-to-end run on the live URL checklist (valid photo, text file, huge file, tiny file, blurry photo, 3 languages, voice, history).
+- [x] **T7.1 (MUST) Final pre-deploy report** with `/pre-deploy` for D6 and a full end-to-end run on the live URL checklist (valid photo, text file, huge file, tiny file, blurry photo, 3 languages, voice, history).
 - **HUMAN H7:** deploy D6, test on phone over mobile data, log in `docs/DEPLOYMENTS.md`, tag `v1.0-round1`, create the GitHub release with notes, submit, screenshot the confirmation.
 
 ## M8: Judging period (15 to 25 Nov)
