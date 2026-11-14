@@ -208,6 +208,21 @@
           <div class="confidence-bar-bg" role="progressbar" aria-valuemin="0" aria-valuemax="100">
             <div id="confidenceBar" class="confidence-bar-fill" style="width: 0%;"></div>
           </div>
+          <!-- Calibrated Confidence Threshold Guide Legend -->
+          <div class="threshold-legend" aria-label="Confidence threshold guide">
+            <span class="thresh-pill" title="Top-1 probability ≥ 40%">
+              <span class="thresh-dot dot-confident"></span>
+              <span data-i18n="threshConfident">Confident ≥40%</span>
+            </span>
+            <span class="thresh-pill" title="Top-1 probability 20% to 40%">
+              <span class="thresh-dot dot-uncertain"></span>
+              <span data-i18n="threshUncertain">Uncertain 20–40%</span>
+            </span>
+            <span class="thresh-pill" title="Top-1 probability < 20%">
+              <span class="thresh-dot dot-unrecognised"></span>
+              <span data-i18n="threshUnrecognised">Unrecognised &lt;20%</span>
+            </span>
+          </div>
         </div>
       </div>
 
@@ -384,6 +399,35 @@
           <tr><td>Top-3 Differential Accuracy</td><td><strong>100.00%</strong></td></tr>
           <tr><td>Macro F1 Score</td><td>0.9669</td></tr>
           <tr><td>Serving CPU Latency</td><td>~18 ms</td></tr>
+        </table>
+
+        <!-- Calibrated Thresholds Specification Table -->
+        <h3 class="section-subtitle" data-i18n="thresholdsTitle">Calibrated Confidence Thresholds (Tuned in M5):</h3>
+        <table class="metrics-table threshold-spec-table">
+          <thead>
+            <tr>
+              <th data-i18n="statusHeader">Status Band</th>
+              <th data-i18n="rangeHeader">Threshold</th>
+              <th data-i18n="actionHeader">System Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="status-badge status-confident" data-i18n="statusConfident">Confident</span></td>
+              <td><strong>≥ 40.0%</strong></td>
+              <td data-i18n="confAction">High certainty; primary disease confirmed; ICAR management advice displayed.</td>
+            </tr>
+            <tr>
+              <td><span class="status-badge status-uncertain" data-i18n="statusUncertain">Uncertain</span></td>
+              <td><strong>20.0% – 39.9%</strong></td>
+              <td data-i18n="uncertAction">Moderate certainty; top-3 differential diagnosis shown; cross-check symptoms.</td>
+            </tr>
+            <tr>
+              <td><span class="status-badge status-unrecognised" data-i18n="statusUnrecognised">Unrecognised</span></td>
+              <td><strong>&lt; 20.0%</strong></td>
+              <td data-i18n="unrecAction">Low certainty / out-of-distribution; advice withheld; retake photo in daylight.</td>
+            </tr>
+          </tbody>
         </table>
 
         <h3 class="section-subtitle" data-i18n="safetyPolicy">Safety & Advisory Policy:</h3>

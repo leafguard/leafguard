@@ -831,6 +831,66 @@ body {
   transition: width 0.4s ease, background-color 0.2s ease;
 }
 
+/* Calibrated Threshold Legend */
+.threshold-legend {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.65rem;
+  padding-top: 0.5rem;
+  border-top: 1px dashed var(--border-medium);
+}
+
+.thresh-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--text-subtle);
+  background: var(--bg-card);
+  padding: 0.2rem 0.45rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border-light);
+  white-space: nowrap;
+}
+
+.thresh-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.dot-confident {
+  background: #15803d;
+  box-shadow: 0 0 4px rgba(21, 128, 61, 0.4);
+}
+
+.dot-uncertain {
+  background: #b45309;
+  box-shadow: 0 0 4px rgba(180, 83, 9, 0.4);
+}
+
+.dot-unrecognised {
+  background: #64748b;
+  box-shadow: 0 0 4px rgba(100, 116, 139, 0.4);
+}
+
+.threshold-spec-table {
+  margin-top: 0.65rem;
+}
+
+.threshold-spec-table th {
+  font-size: 0.75rem;
+}
+
+.threshold-spec-table td {
+  font-size: 0.82rem;
+  vertical-align: middle;
+}
+
 /* ==========================================================================
    Voice Player Card (Play / Pause / Stop Controller)
    ========================================================================== */
