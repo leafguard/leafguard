@@ -138,7 +138,7 @@ Goal: a farmer-friendly phone UI. Follow `.agents/rules/20-frontend.md`.
 ## M6: Submission pack (Fri 13 Nov) -> Deploy D5 only if needed
 - [x] **T6.1 (MUST) README** with: problem, screenshots (from `docs/evidence/`), architecture diagram (Mermaid), run and test commands, dataset credits and licences, measured accuracy table (lab and field, only measured values), limitations, privacy statement ("photos are not stored"), live URL, and a link to `docs/DEPLOYMENTS.md`. Keep the Hugging Face front matter at the top. Commit: `docs: readme`.
 - [x] **T6.2 (MUST) Tech note completion.** Fill structure from measured data supplied by humans; no invented values. Commit: `docs: tech note`.
-- [ ] **T6.3 (MUST) Repo hygiene.** Check LICENSE choice (ask the human), `.gitignore`, no stray files, no TODO placeholders in shipped files, notebook outputs present and free of paths/names. Commit: `chore: repo hygiene`.
+- [x] **T6.3 (MUST) Repo hygiene.** Check LICENSE choice (ask the human), `.gitignore`, no stray files, no TODO placeholders in shipped files, notebook outputs present and free of paths/names. Commit: `chore: repo hygiene`.
 - **HUMAN H6:** slides, pitch video, native-speaker sign-off, two-person anonymity audit (repo, history, notebook, images, PDF, video). Run `/anonymity-audit`.
 - Deploy **D5** only if README front matter or a bug fix changed shipped code. Tag `v1.0-rc`.
 
